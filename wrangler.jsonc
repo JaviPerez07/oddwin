@@ -16,5 +16,15 @@
   "vars": {
     "SITE_ENV": "production",
     "NEXT_PUBLIC_SITE_URL": "https://oddwinstudios.com"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "oddwinstudios.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.oddwinstudios.com",
+      "custom_domain": true
+    }
+  ]
 }

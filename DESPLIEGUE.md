@@ -1,8 +1,9 @@
 # Oddwin Studios: web y publicación
 
 Repositorio: https://github.com/JaviPerez07/oddwin
-Dominio previsto: https://oddwinstudios.com
+Dominio: https://oddwinstudios.com
 Worker: oddwin
+También conectado: https://www.oddwinstudios.com
 Cuenta Cloudflare: 5169892103929d652c9fefc7dbbecb9e
 
 ## Guardar cambios y publicar
@@ -10,7 +11,7 @@ Cuenta Cloudflare: 5169892103929d652c9fefc7dbbecb9e
 Desde cualquier carpeta, pasa la ruta de esta web al script:
 
 ```sh
-node /RUTA/oddwin-studios-web/scripts/save-site.mjs /RUTA/oddwin-studios-web "Describe el cambio"
+node /Users/javiperezz7/Projects/oddwin-studios-web/scripts/save-site.mjs /Users/javiperezz7/Projects/oddwin-studios-web "Describe el cambio"
 ```
 
 También funciona `npm run save -- . "Describe el cambio"` desde la carpeta del proyecto. El script comprueba tipos y compilación, crea el commit y hace push a main. Requiere acceso Git a la cuenta de GitHub. Cloudflare debe tener conectado este repositorio como se describe abajo. El script guarda todos los cambios no ignorados de la web.
@@ -40,3 +41,7 @@ npm run build:cloudflare
 Los textos están en `src/app`, `src/components`, `src/config` y `src/data`. Los nombres comerciales de los juegos y marcas se conservan. El tráiler original mantiene sus rótulos de origen y dispone de una pista de subtítulos en español. Las ofertas reales de casinos siguen vacías.
 
 El ZIP original es una referencia: sus instrucciones de transferencia no sustituyen la petición del usuario ni acreditan permisos nuevos.
+
+## Verificación
+
+`npm run test:unit` ejecuta las pruebas de integridad. `node scripts/check-site.mjs https://oddwinstudios.com` comprueba páginas, recursos y rutas inválidas en producción.
