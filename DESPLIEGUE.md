@@ -37,6 +37,6 @@ npm run typecheck
 npm run build:cloudflare
 ```
 
-Los textos están en `src/app`, `src/components`, `src/config` y `src/data`. Los nombres comerciales de los juegos y marcas se conservan. Las ofertas reales de casinos siguen vacías.
+Los textos están en `src/app`, `src/components`, `src/config` y `src/data`. Los nombres comerciales de los juegos y marcas se conservan. El tráiler original mantiene sus rótulos de origen y dispone de una pista de subtítulos en español. Las ofertas reales de casinos siguen vacías.
 
 El ZIP original es una referencia: sus instrucciones de transferencia no sustituyen la petición del usuario ni acreditan permisos nuevos.

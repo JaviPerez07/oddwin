@@ -68,8 +68,8 @@ export default async function SlotPage({ params }: PageProps<"/slots/[slug]">) {
     ["Volatilidad", volatilityText(slot.volatility), slot.volatility.status],
     ["Premio máximo", shortMaxWin(slot), slot.maxWin.status],
     ["Cuadrícula", layoutText(slot), slot.artwork.schematic.dimsStatus],
-    ["Pays", paysText(slot), slot.payStructure.status],
-    ["Released", simpleText(slot.releaseDate), slot.releaseDate.status],
+    ["Pagos", paysText(slot), slot.payStructure.status],
+    ["Lanzamiento", simpleText(slot.releaseDate), slot.releaseDate.status],
   ];
 
   const nav = [
@@ -130,7 +130,7 @@ export default async function SlotPage({ params }: PageProps<"/slots/[slug]">) {
                       ) : (
                         <span className="inline-flex items-center gap-1.5 text-sm text-fg-3">
                           <span aria-hidden className={cn("size-1.5 rounded-full", st === "conflicting" ? "border border-conflict" : st === "unsourced" ? "border border-fg-3" : "bg-pending")} />
-                          {st === "conflicting" ? "Fuentes contradictorias" : st === "unsourced" ? "Sin fuente" : "Pending"}
+                          {st === "conflicting" ? "Fuentes contradictorias" : st === "unsourced" ? "Sin fuente" : "Pendiente"}
                         </span>
                       )}
                     </dd>

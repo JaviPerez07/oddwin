@@ -45,11 +45,11 @@ export function FactSheet({ slot, provider }: { slot: Slot; provider: Provider |
     { label: "Volatilidad", value: volatilityText(slot.volatility), status: slot.volatility.status, note: slot.volatility.note },
     textRow("Premio máximo", slot.maxWin),
     textRow("Cuadrícula", slot.grid),
-    textRow("Pays", slot.payStructure),
+    textRow("Pagos", slot.payStructure),
     textRow("Giros gratis", slot.freeSpins),
     ...(slot.jackpot.value ? [textRow("Bote", slot.jackpot)] : []),
     { label: "Mecánicas", value: slot.mechanics.map((m) => mechanicInfo[m].label).join(", "), status: slot.mechanicsStatus },
-    { label: "Verificado el", value: slot.reviewedAt ? formatDate(slot.reviewedAt) : null, status: slot.reviewedAt ? "verified" : "unsourced", note: slot.reviewedAt ? undefined : "No figure on this page has been confirmed against a primary source yet." },
+    { label: "Verificado el", value: slot.reviewedAt ? formatDate(slot.reviewedAt) : null, status: slot.reviewedAt ? "verified" : "unsourced", note: slot.reviewedAt ? undefined : "Ninguna cifra de esta página se ha confirmado todavía en una fuente primaria." },
   ];
 
   return (

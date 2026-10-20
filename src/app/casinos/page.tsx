@@ -19,7 +19,7 @@ const CRITERIA = [
   ["Licencia por mercado", "Confirmamos la licencia en el registro público del regulador de cada mercado e indicamos la fecha de comprobación."],
   ["Entidad jurídica", "Registramos la empresa titular de la licencia, además de su marca comercial."],
   ["Aprobación escrita del programa", "El programa de afiliación debe aprobar por escrito esta web como fuente de tráfico. Registrarse en una red no equivale a tener aprobadas todas sus ofertas."],
-  ["Exact tracking link", "We use only the tracking URL the programme issues, on an allow-listed HTTPS domain. We never construct one."],
+  ["Enlace de seguimiento exacto", "Solo utilizamos la URL de seguimiento facilitada por el programa, en un dominio HTTPS autorizado. No la construimos por nuestra cuenta."],
   ["Condiciones de la oferta verificadas", "Solo mostramos bonos verificados para ese mercado y esa fecha. En mercados como Ontario pueden existir restricciones a su publicación."],
   ["Orden editorial", "Las comisiones no deciden el orden. Si hay listados, publicamos sus criterios de ordenación junto a ellos."],
 ] as const;

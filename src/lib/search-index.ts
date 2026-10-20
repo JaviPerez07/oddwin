@@ -16,7 +16,7 @@ export async function buildSearchIndex(): Promise<SearchItem[]> {
     ...providers.map((p) => ({
       type: "provider" as const,
       title: p.name,
-      subtitle: `${slots.filter((s) => s.providerId === p.id).length} games — Análisised`,
+      subtitle: `${slots.filter((s) => s.providerId === p.id).length} juegos analizados`,
       href: `/providers/${p.slug}`,
       keywords: p.description,
     })),

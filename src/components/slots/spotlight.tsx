@@ -43,7 +43,7 @@ export function Spotlight({ items }: { items: SpotlightItem[] }) {
       <div className="mx-auto grid max-w-[88rem] gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-10 lg:px-8 lg:py-10">
         <div className={cn("grid min-w-0 gap-6", art && "xl:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] xl:items-center")}>
           {art ? (
-            <Link href={`/slots/${active.slug}`} className="group block" aria-label={`Leer el análisis de ${active.name} — Análisis`}>
+            <Link href={`/slots/${active.slug}`} className="group block" aria-label={`Leer el análisis de ${active.name}`}>
               <SlotCover artwork={active.artwork} name={active.name} provider={active.provider} surface="hero" aspect="16/9" size="lg" priority sizes="(min-width: 1280px) 45vw, 100vw" className="rounded-2xl shadow-[0_30px_80px_-30px_rgb(0_0_0/0.9)]" />
             </Link>
           ) : null}

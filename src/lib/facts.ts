@@ -20,7 +20,7 @@ export function simpleText(fact: Fact<string>): string | null {
 }
 
 export function shortMaxWin(slot: Slot): string | null {
-  return simpleText(slot.maxWin)?.replace(/ stake$/, "") ?? null;
+  return simpleText(slot.maxWin)?.replace(/( stake| la apuesta)$/, "") ?? null;
 }
 
 export function layoutText(slot: Slot): string {

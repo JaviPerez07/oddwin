@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps<"/providers/[slug]"
     title: `${provider.name} — Slots y ficha del estudio`,
     description: `${provider.name}: ${provider.description}`,
     path: `/providers/${provider.slug}`,
-    // A studio page is only worth indexing once at least one of its — Análisiss is published.
+    // A studio page is only worth indexing once at least one of its reviews is published.
     noindex: provider.status !== "published" || !games.some((g) => g.publicationStatus === "published"),
   });
 }

@@ -227,12 +227,12 @@ export function CatalogExplorer({ items, providers }: { items: CatalogItem[]; pr
 
       <div className="mt-4 flex flex-wrap items-baseline justify-between gap-3">
         <p className="figure text-sm text-fg-2" aria-live="polite" data-testid="catalog-count">
-          {results.length} {results.length === 1 ? "game" : "games"}
-          {activeCount ? " match" : "en nuestro catálogo"}
+          {results.length} {results.length === 1 ? "juego" : "juegos"}
+          {" "}{activeCount ? "encontrados" : "en nuestro catálogo"}
         </p>
         {activeCount ? (
           <button type="button" onClick={clearAll} className="ui inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline" data-testid="catalog-clear">
-            <X className="size-3.5" /> Borrar {activeCount} {activeCount === 1 ? "filter" : "filters"}
+            <X className="size-3.5" /> Borrar {activeCount} {activeCount === 1 ? "filtro" : "filtros"}
           </button>
         ) : null}
       </div>

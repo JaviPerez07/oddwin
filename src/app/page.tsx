@@ -89,8 +89,8 @@ export default function HomePage() {
         <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-center lg:gap-14">
           <div><p className="label text-cyan">Una mirada a su mundo</p><h2 id="trailer-title" className="display-title mt-4 text-[2.8rem] sm:text-[4rem]">Así cobra vida.</h2><p className="mt-4 max-w-md leading-relaxed text-fg-2">Seis segundos para entrar en el universo visual de AURA. En nuestras presentaciones privadas mostramos las versiones extendidas, las funciones del juego y el prototipo actual.</p><Link href="/games/aura" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan hover:underline">Ver el proyecto <ArrowRight className="size-4" /></Link></div>
           <div className="relative overflow-hidden rounded-xl border border-white/15 bg-black p-2 shadow-[0_25px_90px_-40px_rgb(88_229_239/0.25)]">
-            <video controls preload="none" playsInline poster="/games/aura/aura-keyart.webp" className="aspect-video w-full rounded-lg object-cover" aria-label="Tráiler cinematográfico de AURA, versión de seis segundos en inglés">
-              <source src="/games/aura/aura-trailer-6s-en.mp4" type="video/mp4" />
+            <video controls preload="none" playsInline poster="/games/aura/aura-keyart.webp" className="aspect-video w-full rounded-lg object-cover" aria-label="Tráiler cinematográfico de AURA, seis segundos, con subtítulos en español">
+              <source src="/games/aura/aura-trailer-6s-en.mp4" type="video/mp4" /><track kind="subtitles" src="/games/aura/aura-trailer-es.vtt" srcLang="es" label="Español" default />
             </video>
             <span className="absolute right-5 top-5 rounded-full border border-white/20 bg-black/55 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-white/80 backdrop-blur">AURA / Versión de 6 s</span>
           </div>
