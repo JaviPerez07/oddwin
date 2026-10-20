@@ -1,0 +1,52 @@
+{
+  "name": "oddwin-studios",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "build:e2e": "npm run build:e2e:prod && npm run build:e2e:fixtures",
+    "build:e2e:prod": "NEXT_DIST_DIR=.next-e2e-prod SITE_ENV=production NEXT_PUBLIC_SITE_URL=http://localhost:3100 NEXT_PUBLIC_ANALYTICS_DEBUG=1 next build",
+    "build:e2e:fixtures": "node scripts/make-test-assets.mjs && NEXT_DIST_DIR=.next-e2e-fixtures SITE_ENV=test AFFILIATE_TEST_FIXTURES=1 NEXT_PUBLIC_SITE_URL=http://localhost:3101 NEXT_PUBLIC_ANALYTICS_DEBUG=1 next build",
+    "test:e2e": "playwright test",
+    "test": "npm run build:e2e && playwright test",
+    "check:dev": "node scripts/check-dev-errors.mjs",
+    "assets:report": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/assets-report.mts",
+    "build:cloudflare": "opennextjs-cloudflare build",
+    "deploy": "opennextjs-cloudflare deploy",
+    "preview:cloudflare": "opennextjs-cloudflare preview",
+    "save": "node scripts/save-site.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.60.0",
+    "motion": "^14.4.0",
+    "next": "^16.4.2",
+    "radix-ui": "^1.8.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.12",
+    "@playwright/test": "^1.56.1",
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "^4.151.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

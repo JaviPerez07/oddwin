@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+/*
+ * Oddwin Studios — obsidian canvas, warm metal, electric violet and cyan.
+ * Saturation comes from authored game worlds and specific light sources.
+ */
+@theme {
+  --color-canvas: #0d1015;
+  --color-canvas-2: #10141a;
+  --color-surface: #161b23;
+  --color-surface-2: #1d232d;
+  --color-surface-3: #262d39;
+  --color-fg: #eef1f6;
+  --color-fg-2: #b3bac6;
+  --color-fg-3: #7d8594;
+  --color-line: rgb(238 241 246 / 0.09);
+  --color-line-strong: rgb(238 241 246 / 0.18);
+  --color-accent: #63e4ce;
+  --color-accent-strong: #8ef0df;
+  --color-accent-ink: #062521;
+  --color-pending: #ffb86b;
+  --color-verified: #63e4ce;
+  --color-conflict: #ff7a7a;
+  --color-commercial: #f4c76a;
+  --color-violet: #aa7bff;
+  --color-cyan: #58e5ef;
+  --color-coral: #ff786f;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-oswald), var(--font-sans);
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* Display voice: slightly expanded, heavy, tight. Used sparingly. */
+@utility headline {
+  font-family: var(--font-sans);
+  font-stretch: 108%;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+@utility display-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 0.91;
+  text-transform: uppercase;
+}
+
+/* Small uppercase label for metadata and section eyebrows */
+@utility label {
+  font-family: var(--font-sans);
+  font-stretch: 100%;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@utility figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+@utility ui {
+  font-family: var(--font-sans);
+}
+
+/* Long-form review text: sans, comfortable measure and leading on dark. */
+@utility prose-review {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: rgb(238 241 246 / 0.86);
+
+  & p + p {
+    margin-top: 1em;
+  }
+
+  & a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+}
+
+/* Thin, unobtrusive horizontal scrollbars for shelves */
+@utility scroll-shelf {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-3) transparent;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes studio-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.02); }
+  50% { transform: translate3d(-1.1%, 0.6%, 0) scale(1.06); }
+}
+
+@keyframes orbit-turn {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes signal-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(88 229 239 / 0.35); }
+  50% { box-shadow: 0 0 0 8px rgb(88 229 239 / 0); }
+}
+
+.studio-hero-art {
+  animation: studio-drift 24s ease-in-out infinite;
+}
+
+.studio-marquee-track {
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.studio-orbit {
+  animation: orbit-turn 30s linear infinite;
+}
+
+.studio-signal {
+  animation: signal-pulse 2.8s ease-out infinite;
+}
+
+.studio-tilt {
+  transition: transform 500ms var(--ease-out-soft), border-color 300ms ease, background-color 300ms ease;
+}
+
+.studio-tilt:hover {
+  transform: translateY(-7px) rotate(-0.4deg);
+}
+
+.studio-enter {
+  animation: studio-rise 800ms var(--ease-out-soft) both;
+}
+
+.studio-enter:nth-child(2) { animation-delay: 120ms; }
+.studio-enter:nth-child(3) { animation-delay: 230ms; }
+
+@keyframes studio-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-hero-art,
+  .studio-marquee-track,
+  .studio-orbit,
+  .studio-signal {
+    animation: none;
+  }
+
+  .studio-enter {
+    animation: none;
+  }
+
+  .studio-tilt {
+    transition: none;
+  }
+}
