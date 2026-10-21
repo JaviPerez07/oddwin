@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { responsibleMessage } from "@/config/editorial";
 import { site } from "@/config/site";
 import type { SearchItem } from "@/lib/search";
 import { MarketSelector } from "./market-selector";
@@ -9,6 +10,10 @@ import { Wordmark } from "./wordmark";
 
 export function SiteHeader({ searchIndex }: { searchIndex: SearchItem[] }) {
   return (
+    <>
+      <div className="border-t border-line px-4 py-2 text-center text-xs leading-relaxed text-fg-2" aria-label="Aviso de juego responsable">
+        <span className="font-semibold text-fg">+18 | Juega con responsabilidad</span>{" · "}{responsibleMessage}
+      </div>
     <header className="sticky top-0 z-40 border-b border-line bg-canvas/80 backdrop-blur-xl">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-accent focus:px-3 focus:py-2 focus:text-sm focus:text-accent-ink">
         Ir al contenido
@@ -32,5 +37,6 @@ export function SiteHeader({ searchIndex }: { searchIndex: SearchItem[] }) {
         </div>
       </div>
     </header>
+    </>
   );
 }

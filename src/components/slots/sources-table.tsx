@@ -2,17 +2,24 @@ import type { SourceRecord } from "@/types/source";
 import { formatDate } from "@/lib/utils";
 
 const resultLabel: Record<SourceRecord["result"], string> = {
-  confirmed: "Confirmed",
+  confirmed: "Confirmado",
   not_loaded: "Sin consultar",
-  conflict: "Conflict",
+  conflict: "Contradicción",
   not_found: "No encontrado",
 };
 
 const trustLabel: Record<SourceRecord["trust"], string> = {
-  primary: "Principal",
-  secondary: "Secondary",
+  primary: "Primaria",
+  secondary: "Secundaria",
   search_index: "Referencia del buscador",
   preliminary: "Notas del editor",
+};
+
+const sourceFieldLabels: Record<string, string> = {
+  rtp: "RTP", volatility: "Volatilidad", maxWin: "Premio máximo", grid: "Cuadrícula", payStructure: "Pagos",
+  freeSpins: "Giros gratis", jackpot: "Bote", releaseDate: "Lanzamiento", demo: "Versión de prueba",
+  mechanics: "Mecánicas", regulatoryAuthority: "Regulador", minimumLegalAge: "Edad mínima",
+  licenceRegisterUrl: "Registro de licencias", promotionalRules: "Reglas de publicidad", provider: "Proveedor",
 };
 
 export function SourcesTable({ sources }: { sources: SourceRecord[] }) {
@@ -42,7 +49,7 @@ export function SourcesTable({ sources }: { sources: SourceRecord[] }) {
                 )}
                 {s.editorNote ? <p className="mt-1 max-w-sm text-xs leading-snug text-fg-3">{s.editorNote}</p> : null}
               </td>
-              <td className="figure px-4 py-3 text-xs text-fg-2">{s.fields.join(", ")}</td>
+              <td className="figure px-4 py-3 text-xs text-fg-2">{s.fields.map((field) => sourceFieldLabels[field] ?? "Información del juego").join(", ")}</td>
               <td className="px-4 py-3 text-xs text-fg-2">{trustLabel[s.trust]}</td>
               <td className={`px-4 py-3 text-xs font-semibold ${s.result === "confirmed" ? "text-verified" : "text-pending"}`}>{resultLabel[s.result]}</td>
               <td className="figure px-4 py-3 text-xs text-fg-2">{formatDate(s.consultedAt)}</td>

@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/editorial/section-heading";
 import { getCasinoBySlug, getCasinos } from "@/lib/data";
 import { getEligibleOffersByMarket } from "@/lib/offers";
 import { pageMetadata } from "@/lib/seo";
+import { affiliateDisclosure, responsibleMessage } from "@/config/editorial";
 import { formatDate } from "@/lib/utils";
 
 export const dynamicParams = false;
@@ -45,6 +46,9 @@ export default async function CasinoPage({ params }: PageProps<"/casinos/[slug]"
         <h1 className="headline mt-2 text-[2.4rem] sm:text-[3rem]">{casino.name}</h1>
         <p className="mt-3 text-[1.2rem] leading-snug text-fg-2">{casino.editorialSummary}</p>
       </header>
+      <p className="mt-4 text-sm font-semibold">+18 | Juega con responsabilidad</p>
+      <p className="mt-2 text-sm text-fg-2">{responsibleMessage}</p>
+      <p className="mt-2 text-sm text-fg-2">{affiliateDisclosure}</p>
       <section className="mt-10" aria-labelledby="lic-h">
         <SectionHeading label="Licencias" title={<span id="lic-h">Verificado por mercado</span>} />
         <div className="mt-4 overflow-x-auto">
@@ -58,7 +62,7 @@ export default async function CasinoPage({ params }: PageProps<"/casinos/[slug]"
               </tr>
             </thead>
             <tbody>
-              {casino.licences.map((l) => (
+              {casino.licences.filter((licence) => licence.marketCode === "es").map((l) => (
                 <tr key={l.marketCode} className="border-b border-line">
                   <td className="figure py-2">{l.marketCode.toUpperCase()}</td>
                   <td className="py-2">{l.authority}</td>

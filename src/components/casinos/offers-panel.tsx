@@ -7,6 +7,7 @@ import { useMarket } from "@/components/layout/market-context";
 import { MarketSelector } from "@/components/layout/market-selector";
 import { track } from "@/lib/analytics";
 import type { PublicOffer } from "@/lib/eligibility";
+import { affiliateDisclosure, responsibleMessage } from "@/config/editorial";
 import { formatDate } from "@/lib/utils";
 
 /**
@@ -31,6 +32,8 @@ export function OffersPanel({ offersByMarket, context }: { offersByMarket: Recor
       className="rounded-xl border border-commercial/25 bg-[linear-gradient(160deg,rgb(244_199_106/0.06),transparent_60%)] p-5"
       data-testid="offers-panel"
     >
+      <p className="mb-3 text-sm font-semibold text-fg">+18 | Juega con responsabilidad</p>
+      <p className="mb-3 text-xs leading-relaxed text-fg-2">{responsibleMessage}</p>
       <p className="label inline-block rounded bg-commercial/15 px-1.5 py-1 text-commercial">Comercial</p>
       <div className="mt-3 flex items-center justify-between gap-3">
         <h2 id="offers-heading" className="font-semibold text-fg">
@@ -70,19 +73,19 @@ export function OffersPanel({ offersByMarket, context }: { offersByMarket: Recor
                 </div>
                 <a
                   href={`/go/${o.id}?market=${o.marketCode}`}
-                  rel="sponsored nofollow noopener"
+                  rel="sponsored noopener"
                   target="_blank"
                   onClick={() => track("affiliate_click", { offer: o.id, market: o.marketCode, context })}
                   className="inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg bg-commercial px-3 text-xs font-semibold text-canvas hover:brightness-110"
                   data-testid="offer-cta"
                 >
-                  Visitar casino <ArrowUpRight className="size-3.5" />
+                  Enlace de afiliado <ArrowUpRight className="size-3.5" />
                 </a>
               </div>
               <p className="figure mt-2 text-[0.7rem] leading-relaxed text-fg-3">
                 {o.commercialRelationship} · válida para {o.marketCode.toUpperCase()} · verificada {formatDate(o.verifiedAt)} ·{" "}
-                <a href={o.termsUrl} target="_blank" rel="noopener noreferrer" className="underline">
-                  condiciones
+                <a href={o.termsUrl} target="_blank" rel="sponsored noopener" className="underline">
+                  Condiciones · Enlace de afiliado
                 </a>
               </p>
             </li>
@@ -93,8 +96,7 @@ export function OffersPanel({ offersByMarket, context }: { offersByMarket: Recor
       <p className="mt-4 flex gap-2 border-t border-line pt-3 text-xs leading-relaxed text-fg-3">
         <ShieldAlert className="mt-0.5 size-3.5 shrink-0" aria-hidden />
         <span>
-          {current?.minimumAge ? `${current.minimumAge}+ exclusivamente. ` : "Solo para adultos."}
-          Podemos recibir una comisión si aparece una oferta aquí. Nunca influye en el análisis.{" "}
+          {affiliateDisclosure}{" "}
           <Link href="/affiliate-disclosure" className="underline underline-offset-2 hover:text-fg">
             Información de afiliación
           </Link>{" "}

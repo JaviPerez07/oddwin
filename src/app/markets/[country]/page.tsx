@@ -5,7 +5,7 @@ import { Container } from "@/components/editorial/container";
 import { SectionHeading } from "@/components/editorial/section-heading";
 import { Mark, MarkKey } from "@/components/editorial/status";
 import { SourcesTable } from "@/components/slots/sources-table";
-import { internationalHelp } from "@/data/markets";
+import { spanishHelp } from "@/config/editorial";
 import { getMarket, getMarkets } from "@/lib/data";
 import { getEligibleOffersByMarket } from "@/lib/offers";
 import { pageMetadata } from "@/lib/seo";
@@ -132,14 +132,14 @@ export default async function MarketPage({ params }: PageProps<"/markets/[countr
       <section className="mt-12" aria-labelledby="help-h">
         <SectionHeading label="Ayuda" title={<span id="help-h">Ayuda en {market.countryName}</span>} />
         <ul className="mt-4 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
-          {[...(market.selfExclusion ? [market.selfExclusion] : []), ...market.helpResources, ...internationalHelp].map((h) => (
+          {spanishHelp.map((h) => (
             <li key={h.url + h.name} className="border-t border-line py-3">
               <a href={h.url} target="_blank" rel="noopener noreferrer" className="ui font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">
                 {h.name} ↗
               </a>
               <p className="mt-0.5 leading-snug text-fg-2">
                 {h.description}
-                <Mark status={h.status} />
+
               </p>
             </li>
           ))}

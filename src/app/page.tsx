@@ -97,6 +97,50 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <section id="channel-13" className="relative overflow-hidden border-b border-white/10 bg-[#0d090b] py-16 sm:py-20" aria-labelledby="channel-13-title">
+        <div aria-hidden className="pointer-events-none absolute -right-32 top-0 size-96 rounded-full bg-red-900/15 blur-[100px]" />
+        <Container className="relative grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-center lg:gap-14">
+          <div>
+            <p className="label text-[#f09589]">DEAD AIR / CHANNEL 13</p>
+            <h2 id="channel-13-title" className="display-title mt-4 text-[2.8rem] sm:text-[4rem]">Él sigue<br /><span className="text-[#f09589]">al otro lado.</span></h2>
+            <p className="mt-4 max-w-md leading-relaxed text-fg-2">La emisión terminó. El presentador sigue mirando. Quince segundos de terror analógico para entrar en el universo de CHANNEL 13.</p>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-fg-3">Contiene imágenes de terror y un sobresalto. Reproducción por clic.</p>
+            <Link href="/games/dead-air-channel-13" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#f09589] hover:underline">Descubre CHANNEL 13 <ArrowRight className="size-4" /></Link>
+          </div>
+          <figure className="min-w-0">
+            <div className="relative overflow-hidden rounded-xl border border-[#f09589]/25 bg-black p-2 shadow-[0_25px_90px_-40px_rgb(150_35_30/0.4)]">
+              <video controls muted preload="none" playsInline poster="/games/channel-13/channel-13-presenter.jpg" className="aspect-video w-full rounded-lg object-cover" aria-label="Teaser visual de DEAD AIR — CHANNEL 13, quince segundos, terror y sobresalto">
+                <source src="/games/channel-13/channel-13-teaser-15s.mp4" type="video/mp4" />
+                <track kind="subtitles" src="/games/channel-13/channel-13-teaser-es.vtt" srcLang="es" label="Español" default />
+              </video>
+              <span className="pointer-events-none absolute right-5 top-5 rounded-full border border-[#f09589]/30 bg-black/70 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-[#f6b9b0]">CHANNEL 13 / 15 s</span>
+            </div>
+            <figcaption className="mt-3 text-xs leading-relaxed text-fg-3">Una señal que no debería seguir emitiendo. Presentaciones privadas para empresas.</figcaption>
+          </figure>
+        </Container>
+      </section>
+
+      <section id="obsidian-vault" className="relative overflow-hidden border-b border-white/10 bg-[#100e0a] py-16 sm:py-20" aria-labelledby="obsidian-trailer-title">
+        <div aria-hidden className="pointer-events-none absolute -left-32 top-0 size-96 rounded-full bg-amber-700/10 blur-[100px]" />
+        <Container className="relative grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:items-center lg:gap-14">
+          <div>
+            <p className="label text-commercial">OBSIDIAN / THE LOST VAULT</p>
+            <h2 id="obsidian-trailer-title" className="display-title mt-4 text-[2.8rem] sm:text-[4rem]">El poder<br /><span className="text-commercial">tiene un precio.</span></h2>
+            <p className="mt-4 max-w-md leading-relaxed text-fg-2">Un anillo de oro. Un umbral de piedra. Una cámara que guarda algo más que un tesoro. Entra en el universo de OBSIDIAN.</p>
+            <Link href="/games/obsidian-the-lost-vault" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-commercial hover:underline">Descubre OBSIDIAN <ArrowRight className="size-4" /></Link>
+          </div>
+          <figure className="min-w-0">
+            <div className="relative overflow-hidden rounded-xl border border-commercial/25 bg-black p-2 shadow-[0_25px_90px_-40px_rgb(186_135_42/0.35)]">
+              <video controls preload="none" playsInline poster="/games/obsidian/obsidian-teaser-poster.jpg" className="aspect-video w-full rounded-lg object-cover" aria-label="Teaser cinematográfico de OBSIDIAN — The Lost Vault, diez segundos, con sonido">
+                <source src="/games/obsidian/obsidian-teaser-10s.mp4" type="video/mp4" />
+              </video>
+              <span className="pointer-events-none absolute right-5 top-5 rounded-full border border-commercial/30 bg-black/70 px-2.5 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-commercial">OBSIDIAN / 10 s</span>
+            </div>
+            <figcaption className="mt-3 text-xs leading-relaxed text-fg-3">El umbral es solo el principio. Presentaciones privadas para empresas.</figcaption>
+          </figure>
+        </Container>
+      </section>
+
       <Container as="section" className="py-16 sm:py-24" aria-labelledby="partners-title">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
           <div><p className="label text-commercial">03 / La colaboración</p><h2 id="partners-title" className="display-title mt-4 text-[2.8rem] sm:text-[4rem]">Grandes juegos.<br />Acuerdos a su altura.</h2><p className="mt-5 max-w-md leading-relaxed text-fg-2">Adaptamos la colaboración al alcance del proyecto, los derechos y la vía de lanzamiento de cada empresa.</p></div>
@@ -110,19 +154,6 @@ export default function HomePage() {
         </div>
         <p className="mt-6 border-l-2 border-white/15 pl-4 text-xs leading-relaxed text-fg-3">La participación en ingresos se negocia en cada acuerdo. Antes de firmar deben definirse el cálculo, las deducciones, la atribución, los informes, la auditoría, los mercados y la duración.</p>
       </Container>
-
-      <section className="relative isolate overflow-hidden border-y border-white/10 bg-[#111019] py-14 sm:py-20">
-        <div aria-hidden className="absolute -right-20 top-1/2 -z-10 size-[30rem] -translate-y-1/2 rounded-full bg-commercial/10 blur-[90px]" />
-        <Container className="grid gap-8 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:items-center lg:gap-16">
-          <div><p className="label text-violet">Más mundos originales</p><h2 className="display-title mt-4 text-[2.65rem] sm:text-[3.7rem]">Seguimos<br />creando.</h2><p className="mt-4 max-w-md leading-relaxed text-fg-2">AURA es el primer proyecto que presentamos. Otros dos conceptos originales ya están en desarrollo.</p></div>
-          <div className="border-y border-white/15">
-            {[
-              ["002", "OBSIDIAN", "LA CÁMARA PERDIDA", "Escala ancestral / poder oculto", "/games/obsidian-the-lost-vault", "text-commercial"],
-              ["003", "DEAD AIR", "CANAL 13", "Terror analógico / señal intervenida", "/games/dead-air-channel-13", "text-cyan"],
-            ].map(([id, name, subtitle, texture, href, color]) => <Link key={id} href={href} className="group grid grid-cols-[2.7rem_minmax(0,1fr)_auto] items-center gap-4 border-b border-white/10 py-5 last:border-0 sm:grid-cols-[3.5rem_minmax(0,1fr)_minmax(10rem,0.7fr)_auto] sm:gap-5 sm:py-6"><span className="figure text-xs text-fg-3">{id}</span><span><span className={`display-title block text-[1.8rem] transition-colors group-hover:text-white sm:text-[2.4rem] ${color}`}>{name}</span><span className="mt-0.5 block text-[0.6rem] font-semibold tracking-[0.2em] text-white/50">{subtitle}</span></span><span className="hidden text-sm text-fg-3 sm:block">{texture}</span><ArrowUpRight className="size-5 text-fg-3 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-white" /></Link>)}
-          </div>
-        </Container>
-      </section>
 
       <section className="relative overflow-hidden py-16 sm:py-24" aria-labelledby="contact-title">
         <Container className="relative">

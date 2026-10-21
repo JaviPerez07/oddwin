@@ -9,13 +9,13 @@ export const mechanicInfo: Record<Mechanic, { label: string; blurb: string }> = 
   "both-ways": { label: "Pagos en ambos sentidos", blurb: "Líneas evaluadas desde ambos extremos." },
   "expanding-symbols": { label: "Símbolos expansivos", blurb: "Un símbolo elegido se expande hasta llenar rodillos durante una función especial." },
   "expanding-wilds": { label: "Comodines expansivos", blurb: "Comodines que ocupan un rodillo completo." },
-  "sticky-wilds": { label: "Comodines persistentes", blurb: "Comodines que permanecen en su posición durante giros posteriores o respins." },
+  "sticky-wilds": { label: "Comodines persistentes", blurb: "Comodines que permanecen en su posición durante giros posteriores o giros adicionales." },
   multipliers: { label: "Multiplicadores", blurb: "Símbolos o medidores que multiplican los premios." },
   "free-spins": { label: "Giros gratis", blurb: "Ronda de giros sin apuesta adicional." },
   "money-collect": { label: "Recogida de valores", blurb: "Un símbolo recolector recoge el valor monetario de otros símbolos." },
-  "hold-and-respin": { label: "Retención y respins", blurb: "Los símbolos de bonus quedan fijados mientras las posiciones restantes vuelven a girar." },
+  "hold-and-respin": { label: "Retención y nuevos giros", blurb: "Los símbolos de bonus quedan fijados mientras las posiciones restantes vuelven a girar." },
   "bonus-buy": { label: "Compra de bonus", blurb: "Permite pagar un precio fijo para acceder al bonus. Restringido en algunos mercados." },
-  respins: { label: "Respins", blurb: "Giros adicionales con algunos rodillos retenidos." },
+  respins: { label: "Giros adicionales", blurb: "Giros adicionales con algunos rodillos retenidos." },
   "feature-choice": { label: "Elección de bonus", blurb: "El jugador elige entre variantes del bonus con distintos perfiles de riesgo." },
 };
 

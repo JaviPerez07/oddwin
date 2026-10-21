@@ -11,10 +11,11 @@ interface Row {
   value: React.ReactNode;
   status: FactStatus;
   note?: string;
+  sourceIds?: string[];
 }
 
 function textRow(label: string, fact: Fact<string>): Row {
-  return { label, value: simpleText(fact), status: fact.status, note: fact.note };
+  return { label, value: simpleText(fact), status: fact.status, note: fact.note, sourceIds: fact.sourceIds };
 }
 
 /** The technical file: every field, its value, its status and the editor's note. */
@@ -26,6 +27,7 @@ export function FactSheet({ slot, provider }: { slot: Slot; provider: Provider |
       label: "RTP",
       status: slot.rtp.status,
       note: slot.rtp.note,
+      sourceIds: slot.rtp.sourceIds,
       value:
         slot.rtp.status === "conflicting" ? (
           <span>
@@ -42,7 +44,7 @@ export function FactSheet({ slot, provider }: { slot: Slot; provider: Provider |
           </span>
         ) : null,
     },
-    { label: "Volatilidad", value: volatilityText(slot.volatility), status: slot.volatility.status, note: slot.volatility.note },
+    { label: "Volatilidad", value: volatilityText(slot.volatility), status: slot.volatility.status, note: slot.volatility.note, sourceIds: slot.volatility.sourceIds },
     textRow("Premio máximo", slot.maxWin),
     textRow("Cuadrícula", slot.grid),
     textRow("Pagos", slot.payStructure),
@@ -68,6 +70,16 @@ export function FactSheet({ slot, provider }: { slot: Slot; provider: Provider |
               {r.value && r.status !== "verified" ? <span className="mr-1.5 font-sans text-xs text-fg-3">Referencia</span> : null}
               {r.value ?? <span className="text-fg-3">—</span>}
               {r.value && r.label !== "RTP" ? <Mark status={r.status} /> : null}
+              {["Proveedor", "RTP", "Volatilidad", "Premio máximo"].includes(r.label) ? (
+                <span className="mt-1 block font-sans text-xs leading-relaxed text-fg-3">
+                  {r.label === "Proveedor" ? (
+                    <>Fuente: {provider ? <a href={provider.officialWebsite.value ?? undefined} target="_blank" rel="noopener noreferrer" className="underline">Sitio oficial de {provider.name}</a> : "Sin fuente"}. Referencia registrada: {formatDate(provider?.sources[0]?.consultedAt ?? null)}; atribución pendiente de contrastar en la documentación del juego.</>
+                  ) : (r.sourceIds?.length ? r.sourceIds.map((id) => {
+                    const source = slot.sources.find((item) => item.id === id);
+                    return <span key={id} className="block">Fuente: {source?.url ? <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline">{source.label}</a> : source?.label ?? "Sin fuente documentada"}. Fecha de referencia: {source?.consultedAt ? formatDate(source.consultedAt) : "sin fecha"}. {source?.result === "confirmed" ? "Fuente consultada." : "Pendiente de consulta y verificación."}</span>;
+                  }) : "Sin fuente documentada; sin fecha de consulta.")}
+                </span>
+              ) : null}
               {r.note ? <span className="mt-1 block font-sans text-xs leading-snug text-fg-3">{r.note}</span> : null}
             </dd>
             <dd className="col-start-2 mt-1 sm:col-start-3 sm:mt-0 sm:text-right">

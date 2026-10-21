@@ -5,7 +5,11 @@ export const metadata = pageMetadata({ title: "Cómo analizamos", description: "
 
 export default function MethodologyPage() {
   return (
-    <LegalPage label="Criterios editoriales" title="Cómo analizamos" intro="Cada cifra está respaldada por una fuente identificada y fechada o lleva una marca visible de su estado de verificación." path="/methodology" updated="2026-10-20">
+    <LegalPage label="Criterios editoriales" title="Cómo analizamos" intro="Cada cifra está respaldada por una fuente identificada y fechada o lleva una marca visible de su estado de verificación." path="/methodology" updated="2026-10-21">
+      <section>
+        <h2>Ámbito y proyectos propios</h2>
+        <p>La revista de tragaperras y el contenido comercial se dirigen exclusivamente a España. AURA, Obsidian y Dead Air son proyectos propios de Oddwin Studios, identificados como tales y excluidos de los rankings y recomendaciones editoriales independientes.</p>
+      </section>
       <section>
         <h2>Nuestras marcas de verificación</h2>
         <ul>

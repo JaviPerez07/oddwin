@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("no horizontal overflow on key pages", async ({ page }) => {
-  for (const path of ["/", "/slots", "/slots/gates-of-olympus", "/slots/bonanza-megaways", "/providers", "/casinos", "/markets/de", "/methodology"]) {
+  for (const path of ["/", "/slots", "/slots/gates-of-olympus", "/slots/bonanza-megaways", "/providers", "/casinos", "/markets/es", "/methodology"]) {
     await page.goto(path);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow, path).toBeLessThanOrEqual(0);

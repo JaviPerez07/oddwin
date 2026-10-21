@@ -109,7 +109,7 @@ export const slots: Slot[] = [
         },
         {
           id: "free-spins",
-          heading: "Free spins: where multipliers stop resetting",
+          heading: "Giros gratis: el multiplicador se acumula",
           paragraphs: [
             "En el bonus, los multiplicadores de las secuencias premiadas se añaden a un total que persiste durante la función. Las esferas tempranas influyen más porque afectan a las siguientes secuencias que cumplan las condiciones.",
             "Los scatters pueden prolongar la función. El diseño concentra el potencial al final, pero muchas rondas terminan sin acumular un multiplicador relevante.",
@@ -629,7 +629,7 @@ export const slots: Slot[] = [
         },
         {
           id: "reactions",
-          heading: "Reactions",
+          heading: "Cascadas sucesivas",
           paragraphs: [
             "Los símbolos premiados desaparecen y se sustituyen desde arriba. BTG llama a esto reacción. Cada reacción vuelve a evaluar las combinaciones dentro del mismo giro.",
           ],

@@ -102,7 +102,8 @@ export async function getMarket(code: string): Promise<Market | null> {
 }
 
 export async function getCasinos(): Promise<Casino[]> {
-  return fixturesEnabled() ? [...prodCasinos, ...fixtureCasinos] : [...prodCasinos];
+  return (fixturesEnabled() ? [...prodCasinos, ...fixtureCasinos] : [...prodCasinos])
+    .filter((casino) => casino.licences.some((licence) => licence.marketCode === "es"));
 }
 
 export async function getCasinoBySlug(slug: string): Promise<Casino | null> {

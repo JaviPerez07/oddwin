@@ -56,7 +56,7 @@ export function checkOfferEligibility(offer: AffiliateOffer, ctx: EligibilityCon
   if (offer.approvalStatus !== "approved") reasons.push("not_approved");
   if (!offer.verifiedAt) reasons.push("not_verified");
   if (offer.expiresAt && new Date(offer.expiresAt).getTime() <= ctx.now.getTime()) reasons.push("expired");
-  if (offer.marketCode !== ctx.marketCode) reasons.push("wrong_market");
+  if (ctx.marketCode !== "es" || offer.marketCode !== ctx.marketCode) reasons.push("wrong_market");
 
   if (!ctx.market) {
     reasons.push("unknown_market");
@@ -108,7 +108,7 @@ export function toPublicOffer(offer: AffiliateOffer, casino: Casino): PublicOffe
     marketCode: offer.marketCode,
     headline: offer.headline,
     termsUrl: offer.termsUrl,
-    commercialRelationship: `Enlace de afiliación — ${offer.programName}`,
+    commercialRelationship: `Enlace de afiliado — ${offer.programName}`,
     verifiedAt: offer.verifiedAt ?? "",
     expiresAt: offer.expiresAt,
     isTestData: Boolean(offer.isTestData),

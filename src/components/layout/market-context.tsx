@@ -24,7 +24,7 @@ const STORAGE_KEY = "paytable.market";
  * a legal eligibility check. Stored locally on the device; no cookie.
  */
 export function MarketProvider({ options, children }: { options: MarketOption[]; children: React.ReactNode }) {
-  const [market, setMarketState] = useState<string | null>(null);
+  const [market, setMarketState] = useState<string | null>("es");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -39,6 +39,7 @@ export function MarketProvider({ options, children }: { options: MarketOption[];
   }, [options]);
 
   const setMarket = useCallback((code: string | null) => {
+    if (code !== null && !options.some((option) => option.code === code)) return;
     setMarketState(code);
     try {
       if (code) window.localStorage.setItem(STORAGE_KEY, code);
@@ -46,7 +47,7 @@ export function MarketProvider({ options, children }: { options: MarketOption[];
     } catch {
       /* ignore */
     }
-  }, []);
+  }, [options]);
 
   const value = useMemo(() => ({ market, setMarket, options, ready }), [market, setMarket, options, ready]);
   return <MarketContext.Provider value={value}>{children}</MarketContext.Provider>;

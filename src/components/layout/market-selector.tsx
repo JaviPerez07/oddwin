@@ -27,7 +27,7 @@ export function MarketSelector({ className }: { className?: string }) {
         <div className="px-3 pb-2 pt-3">
           <p className="label text-accent">Tu mercado</p>
           <p className="mt-2 text-sm leading-snug text-fg-2">
-            Elige dónde estás para ver los operadores verificados para tu mercado. No deducimos tu ubicación.
+            La sección comercial se dirige solo a España. Seleccionar España no verifica tu edad ni tu residencia.
           </p>
         </div>
         <ul role="listbox" aria-label="Mercados" className="mt-1 max-h-80 overflow-auto">

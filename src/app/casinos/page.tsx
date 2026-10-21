@@ -6,6 +6,7 @@ import { Mark } from "@/components/editorial/status";
 import { getCasinos, getMarkets } from "@/lib/data";
 import { getEligibleOffersByMarket } from "@/lib/offers";
 import { pageMetadata } from "@/lib/seo";
+import { affiliateDisclosure, responsibleMessage } from "@/config/editorial";
 import { formatDate } from "@/lib/utils";
 
 export const metadata = pageMetadata({
@@ -16,11 +17,11 @@ export const metadata = pageMetadata({
 });
 
 const CRITERIA = [
-  ["Licencia por mercado", "Confirmamos la licencia en el registro público del regulador de cada mercado e indicamos la fecha de comprobación."],
+  ["Licencia DGOJ para España", "Confirmamos la licencia española en el registro público de la DGOJ e indicamos la fecha de comprobación."],
   ["Entidad jurídica", "Registramos la empresa titular de la licencia, además de su marca comercial."],
   ["Aprobación escrita del programa", "El programa de afiliación debe aprobar por escrito esta web como fuente de tráfico. Registrarse en una red no equivale a tener aprobadas todas sus ofertas."],
   ["Enlace de seguimiento exacto", "Solo utilizamos la URL de seguimiento facilitada por el programa, en un dominio HTTPS autorizado. No la construimos por nuestra cuenta."],
-  ["Condiciones de la oferta verificadas", "Solo mostramos bonos verificados para ese mercado y esa fecha. En mercados como Ontario pueden existir restricciones a su publicación."],
+  ["Condiciones de la oferta verificadas", "Solo publicamos ofertas para España tras verificar su vigencia, condiciones y admisibilidad."],
   ["Orden editorial", "Las comisiones no deciden el orden. Si hay listados, publicamos sus criterios de ordenación junto a ellos."],
 ] as const;
 
@@ -37,7 +38,7 @@ export default async function CasinosPage() {
           <p className="label text-accent">Directorio de casinos</p>
           <h1 className="headline mt-2 text-[2.4rem] sm:text-[3rem]">Operadores verificados, antes de aparecer aquí</h1>
           <p className="mt-3 max-w-2xl text-[1.2rem] leading-snug text-fg-2">
-            Este directorio está vacío hasta completar las comprobaciones. Solo publicamos un operador cuando confirmamos su licencia para el mercado correspondiente y el programa aprueba la web por escrito.
+            Este directorio está vacío hasta completar las comprobaciones. Solo publicamos un operador cuando confirmamos su licencia de la DGOJ para España y el programa aprueba la web por escrito.
           </p>
         </div>
         <aside className="rounded-xl bg-surface p-5 ring-1 ring-inset ring-line">
@@ -52,18 +53,22 @@ export default async function CasinosPage() {
               <dd>{Object.values(offersByMarket).reduce((n, l) => n + l.filter((o) => !o.isTestData).length, 0)}</dd>
             </div>
             <div className="flex justify-between py-1.5">
-              <dt className="text-fg-3">Mercados en seguimiento</dt>
-              <dd>{markets.length}</dd>
+              <dt className="text-fg-3">Mercado editorial</dt>
+              <dd>España</dd>
             </div>
           </dl>
         </aside>
       </header>
 
+      <p className="mt-6 text-sm font-semibold text-fg">+18 | Juega con responsabilidad</p>
+      <p className="mt-2 text-sm text-fg-2">{responsibleMessage}</p>
+      <p className="mt-2 text-sm text-fg-2">{affiliateDisclosure}</p>
+
       <section className="mt-12" aria-labelledby="dir-h">
         <SectionHeading label="Directorio" title={<span id="dir-h">Operadores verificados</span>} />
         {real.length === 0 ? (
           <p className="mt-4 max-w-2xl border-y border-line py-6 text-[1.1rem] italic text-fg-2" data-testid="casinos-empty">
-            Ningún operador ha completado todavía la verificación. Cuando lo haga, aparecerá aquí con sus mercados autorizados y la fecha de cada comprobación.
+            Ningún operador ha completado todavía la verificación. Cuando lo haga, aparecerá aquí con su licencia española y la fecha de cada comprobación.
           </p>
         ) : (
           <CasinoList casinos={real} />
@@ -99,7 +104,7 @@ export default async function CasinosPage() {
               <Link href={`/markets/${m.code}`} className="group block">
                 <span className="headline text-[1.5rem] group-hover:text-accent">{m.countryName}</span>
                 <span className="mt-0.5 block text-fg-2">
-                  {m.regulatoryAuthority.value?.englishName ?? m.regulatoryAuthority.value?.name}
+                  {m.regulatoryAuthority.value?.name}
                   <Mark status={m.regulatoryAuthority.status} />
                 </span>
               </Link>

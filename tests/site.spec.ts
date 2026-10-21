@@ -111,10 +111,10 @@ test("demo button only exists for verified destinations", async ({ page }) => {
 
 test("no commercial offer appears in production for any market", async ({ page }) => {
   await page.goto("/slots/starburst");
-  await expect(page.getByTestId("offers-no-market")).toBeVisible();
+  await expect(page.getByTestId("offers-empty")).toBeVisible();
   await page.getByTestId("offers-panel").getByTestId("market-trigger").click();
-  await page.getByTestId("market-option-gb").click();
-  await expect(page.getByTestId("offers-empty")).toHaveText(/No verified operator offers are available for this market yet/);
+  await page.getByTestId("market-option-es").click();
+  await expect(page.getByTestId("offers-empty")).toHaveText(/Aún no hay ofertas de operadores verificados/);
   await expect(page.getByTestId("offer-cta")).toHaveCount(0);
 });
 
@@ -144,7 +144,7 @@ test("sitemap and robots are coherent", async ({ request }) => {
 });
 
 test("all key pages render without errors", async ({ page }) => {
-  for (const path of ["/providers/netent", "/casinos", "/markets/ca-on", "/about", "/methodology", "/responsible-gambling", "/affiliate-disclosure", "/privacy", "/terms", "/contact"]) {
+  for (const path of ["/providers/netent", "/casinos", "/markets/es", "/about", "/methodology", "/responsible-gambling", "/affiliate-disclosure", "/privacy", "/terms", "/contact"]) {
     const errors = collectErrors(page);
     const res = await page.goto(path);
     expect(res?.status(), path).toBe(200);

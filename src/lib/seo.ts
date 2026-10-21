@@ -21,7 +21,7 @@ export function pageMetadata({ title, description, path, noindex, type = "websit
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: { "es-ES": url } },
     robots: noindex ? { index: false, follow: true } : { index: true, follow: true },
     openGraph: {
       title,

@@ -50,7 +50,7 @@ test.describe("data integrity", () => {
 });
 
 test.describe("offer eligibility", () => {
-  const gb = { ...markets.find((m) => m.code === "gb")!, allowedOperators: ["fixture-north"] };
+  const gb = { ...markets.find((m) => m.code === "es")!, allowedOperators: ["fixture-north"] };
   const north = fixtureCasinos[0];
   const now = new Date("2026-10-20T12:00:00Z");
   const base = { marketCode: "gb", market: gb, casino: north, now, siteHost: "localhost" };
