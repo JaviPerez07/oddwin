@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page Breaker — Direction A · game room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Bangers&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="oddwin.css">
+<style>
+  /* the game's own room on the ODDWIN floor: PAGE BREAKER palette from docs/GDD.md */
+  :root { --pb-red: #C8102E; --pb-ink: #141414; --pb-paper: #F2E6CC; --pb-yellow: #FFD23F; }
+  /* the room: the page takes the game's identity */
+  .room { background: var(--pb-paper); color: var(--pb-ink); position: relative; overflow: hidden;
+    background-image: radial-gradient(#1414141f 1px, transparent 1.2px); background-size: 7px 7px; }
+  .room .top { display: grid; grid-template-columns: 1fr 1.35fr; gap: 48px; padding-top: clamp(36px, 6vh, 56px); padding-bottom: 64px; align-items: end; }
+  .room h1 { font: 400 128px/.85 'Bangers', sans-serif; color: var(--pb-red); letter-spacing: .01em;
+    text-shadow: 5px 5px 0 var(--pb-ink); -webkit-text-stroke: 3px var(--pb-ink); }
+  .bubble { position: relative; background: #fff; border: 3px solid var(--pb-ink); border-radius: 26px; padding: 18px 22px; font: 500 19px/1.4 var(--text); max-width: 440px; margin-top: 30px; box-shadow: 6px 6px 0 var(--pb-ink); }
+  .bubble::after { content: ''; position: absolute; left: 46px; bottom: -22px; border: 11px solid transparent; border-top: 14px solid var(--pb-ink); }
+  .fight { margin-top: 22px; max-width: 46ch; font-size: 16px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  .tags span { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .05em; border: 2px solid var(--pb-ink); padding: 6px 10px; background: var(--pb-yellow); }
+  .player { position: relative; border: 4px solid var(--pb-ink); box-shadow: 10px 10px 0 var(--pb-ink); transform: rotate(.6deg); background: var(--pb-ink); }
+  .player video { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+  .player .play { position: absolute; left: 22px; bottom: 22px; display: flex; align-items: center; gap: 12px; background: var(--pb-red); color: #fff; border: 3px solid var(--pb-ink); padding: 12px 18px; font: 400 26px 'Bangers'; letter-spacing: .04em; box-shadow: 4px 4px 0 var(--pb-ink); }
+  .player .play i { width: 0; height: 0; border-left: 16px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
+  .player .len { position: absolute; left: 0; top: calc(100% + 16px); font: 500 11px var(--mono); color: #141414aa; letter-spacing: .06em; text-transform: uppercase; }
+  .rip { position: absolute; right: 2%; top: 4px; height: 300px; pointer-events: none; filter: drop-shadow(6px 6px 0 #14141455); }
+  .tear { height: 26px; background: var(--floor); clip-path: polygon(0 100%, 0 40%, 3% 70%, 6% 30%, 9% 64%, 13% 20%, 16% 58%, 20% 36%, 24% 72%, 27% 26%, 31% 60%, 35% 32%, 38% 68%, 42% 22%, 46% 62%, 50% 34%, 53% 70%, 57% 28%, 61% 58%, 64% 24%, 68% 66%, 72% 38%, 75% 72%, 79% 30%, 83% 62%, 86% 26%, 90% 60%, 94% 36%, 97% 66%, 100% 30%, 100% 100%); }
+
+  .mech h3 { font-size: 22px; font-stretch: 112%; }
+  .crumb { padding-bottom: 18px; }
+
+  @media (max-width: 1100px) { .room .top { grid-template-columns: 1fr; } .rip { height: 200px; } }
+  @media (max-width: 760px) {
+    .room .top { gap: 30px; padding-top: 30px; } .room h1 { font-size: 76px; -webkit-text-stroke: 2px var(--pb-ink); text-shadow: 3px 3px 0 var(--pb-ink); }
+    .rip { height: 170px; top: 40px; right: -10px; }
+  }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="a_home.html"><img src="assets/oddwin_wordmark.png" alt="ODDWIN Studios" width="108" height="28"></a>
+  <nav><a href="a_home.html#slate">Games</a><a href="a_home.html#ships">What ships</a><a href="a_home.html#deals">Partners</a><a href="a_home.html#studio">Studio</a><a href="a_home.html#contact">Contact</a></nav>
+  <a class="access" href="a_home.html#contact">Partner access →</a>
+</div></header>
+<div class="wrap crumb mono">Games / 01 / <b>Page Breaker</b></div>
+
+<div class="room">
+  <img class="rip" data-qa-deco src="assets/rip_wave.png" alt="">
+  <div class="wrap top">
+    <div>
+      <h1>Page<br>Breaker!!</h1>
+      <p class="bubble">“Hey, you. Yes, you. Welcome to my comic.” — Rip, who knows exactly where he lives.</p>
+      <div class="tags"><span>Comic action</span><span>Player-choice bonus</span><span>Server-side multi-step</span></div>
+      <p class="fight">The fight: Safe, Normal or Improvised. Riskier hits pay more — every choice has the same expected value, resolved on the server step by step.</p>
+    </div>
+    <div class="player"><video src="media/pb_fight.mp4" poster="media/pb_fight.jpg" autoplay muted loop playsinline aria-label="Page Breaker, fight bonus, real capture"></video><span class="play"><i></i>Watch the trailer</span><span class="len">Loop: the fight · real capture</span></div>
+  </div>
+  <div class="tear"></div>
+</div>
+
+<section><div class="wrap">
+  <div class="sec-head"><span class="mono">Key figures</span><h2 class="display gold">The numbers, from the PAR.</h2><span class="mono">pbk-math-0.2.0 · not lab-certified</span></div>
+  <dl class="par">
+    <div><dt>Grid</dt><dd>5×3</dd><small>20 fixed lines</small></div>
+    <div><dt>Volatility</dt><dd>High</dd><small>σ 8.8× per round</small></div>
+    <div><dt>Max win</dt><dd>5,000×</dd><small>hard cap in engine</small></div>
+    <div><dt>Hit rate</dt><dd>32.9%</dd><small>any win</small></div>
+    <div><dt>Free spins</dt><dd>1 / 102</dd><small>rounds</small></div>
+    <div><dt>Fight bonus</dt><dd>1 / 195</dd><small>rounds</small></div>
+  </dl>
+  <div class="rtp"><span>RTP versions</span><b>96.13%</b><b>94.13%</b><b>92.22%</b><b>88.40%</b><span>· bonus buy 40× (v96), switchable per market</span></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><span class="mono">Mechanics</span><h2 class="display gold">What the player does.</h2><span class="mono">Loops are real captures</span></div>
+  <div class="mech">
+    <figure><video src="media/pb_mystery.mp4" poster="media/pb_mystery.jpg" autoplay muted loop playsinline></video><figcaption><h3 class="display gold-s">Mystery panels</h3><p>Blank panels flip and all reveal the same symbol.</p><span class="mono">Real capture · 0:06</span></figcaption></figure>
+    <figure><video src="media/pb_rip.mp4" poster="media/pb_rip.jpg" autoplay muted loop playsinline></video><figcaption><h3 class="display gold-s">Rip &amp; Respin</h3><p>On a quiet spin Rip tears the page and respins the reels, holding the first two.</p><span class="mono">Real capture · 0:07</span></figcaption></figure>
+    <figure><video src="media/pb_dc.mp4" poster="media/pb_dc.jpg" autoplay muted loop playsinline></video><figcaption><h3 class="display gold-s">Director's Cut</h3><p>Ten free spins; every three collected levels up sticky wilds and adds spins.</p><span class="mono">Real capture · 0:07</span></figcaption></figure>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><span class="mono">Partner kit</span><h2 class="display gold">What you get with Page Breaker.</h2><span class="mono">Private access per company</span></div>
+  <ul class="kit">
+    <li>Trailers 16:9 and 9:16<span class="open">Public</span></li>
+    <li>One-page fact sheet (PDF)<span class="open">Public</span></li>
+    <li>Playable build, desktop and mobile<span>Partner access</span></li>
+    <li>PAR sheet · 4 RTP versions<span>Partner access</span></li>
+    <li>Integration guide · RGS contract<span>Partner access</span></li>
+    <li>Compliance matrix · market profiles<span>Partner access</span></li>
+    <li>Key art, cutdowns and lobby tiles<span>Partner access</span></li>
+    <li>Source art with production records<span>On IP deals</span></li>
+  </ul>
+  <div class="ask"><a class="btn" href="a_home.html#contact">Request access to Page Breaker</a><p>Access is personal: each partner signs in with their work email. No real-money play; 18+.</p></div>
+</div></section>
+
+<div class="next"><div class="wrap"><a href="a_home.html#slate" class="mono">← All titles</a><a href="a_game_obsidian.html"><b class="display gold">Obsidian →</b></a></div></div>
+<footer><div class="wrap">
+  <p>ODDWIN Studios builds games for licensed businesses only. Math is simulated and exactly calculated, not yet certified by a test lab. No real-money play on this site. 18+.</p>
+  <span class="seal mono"><img src="assets/oddwin_mono.png" alt=""><span>© 2026 ODDWIN Studios</span></span>
+</div></footer>
+</body>
+</html>

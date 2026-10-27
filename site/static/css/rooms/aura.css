@@ -1,0 +1,30 @@
+/* the game's own room on the ODDWIN floor: AURA palette and type from 05_docs/IDENTITY.md
+   (obsidian, molten gold, violet aura; Cinzel title with a five-stop metal fill, Oswald figures) */
+@font-face { font-family: 'Cinzel'; src: url(/fonts/cinzel-var.woff2) format('woff2'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Oswald'; src: url(/fonts/oswald-var.woff2) format('woff2'); font-weight: 200 700; font-display: swap; }
+:root { --au-gold: #D9B45A; --au-gold-hi: #F3E3B0; --au-gold-lt: #FFE08A; --au-ivory: #F3EAD7; --au-violet: #7A4BD0; --au-violet-hi: #B07CFF; --au-lav: #D7B8FF; --au-magenta: #C04BD0; --au-warm: #9A8F7A; }
+.room { position: relative; overflow: hidden; isolation: isolate; color: var(--au-ivory); }
+.room::before { content: ''; position: absolute; inset: 0; z-index: -2; background: url(/img/games/aura-keyart.webp) center 40% / cover; filter: brightness(.34) saturate(.9); }
+.room::after { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(45% 60% at 22% 45%, #7A4BD040, transparent 70%), linear-gradient(180deg, #07080B 0%, #07080B80 30%, #07080Bb3 75%, #07080B 100%); }
+.room .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: clamp(40px, 7vh, 84px); padding-bottom: clamp(56px, 9vh, 110px); }
+.mark { container-type: inline-size; text-align: center; }
+.mark h1 { font: 900 min(22cqi, 17vh, 140px)/1.15 'Cinzel', serif; letter-spacing: .14em; margin-right: -.14em;
+  background: linear-gradient(105deg, transparent 42%, #fff6dccc 50%, transparent 58%) 100% 0 / 300% 100% no-repeat,
+    linear-gradient(180deg, #FFF4C9 0%, #FFE08A 28%, #D9B45A 50%, #7A5420 64%, #E8C670 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 22px #B07CFF66) drop-shadow(0 3px 0 #1a1022); animation: shine 2.8s .6s cubic-bezier(.3,.6,.2,1) 1 both; }
+.mark .sub { margin-top: 20px; font: 600 clamp(10px, 1vw, 12.5px) var(--text); letter-spacing: .42em; margin-right: -.42em; color: var(--au-lav); text-transform: uppercase; }
+.line { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; color: var(--au-ivory); margin: clamp(22px, 4vh, 34px) auto 0; max-width: 40ch; }
+.plates { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+.plates span { display: grid; gap: 2px; min-width: 104px; padding: 9px 14px 10px; background: #07080Bcc; border: 1px solid #D9B45A80; border-radius: 3px; box-shadow: inset 0 0 18px #7A4BD033; }
+.plates small { font: 600 10px var(--text); letter-spacing: .26em; color: var(--au-lav); }
+.plates b { font: 600 24px/1.1 'Oswald', sans-serif; color: var(--au-gold-lt); font-variant-numeric: tabular-nums; }
+.player { position: relative; border: 1px solid #D9B45A80; box-shadow: 0 0 0 6px #07080B, 0 0 0 7px #B07CFF55, 0 0 60px #7A4BD055, 0 30px 80px #000c; }
+.player video { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.player .play-btn { position: absolute; left: 18px; bottom: 18px; font: 600 12.5px var(--text); letter-spacing: .22em; text-transform: uppercase; color: #120A1C; background: linear-gradient(180deg, var(--au-gold-hi), var(--au-gold)); padding: 13px 18px; box-shadow: 0 0 24px #B07CFF66; }
+.player .len { position: absolute; left: 0; top: calc(100% + 14px); font: 500 11px var(--mono); color: var(--au-warm); letter-spacing: .06em; text-transform: uppercase; }
+.aura-line { display: block; height: 2px; background: linear-gradient(90deg, transparent, var(--au-violet) 20%, var(--au-gold-lt) 50%, var(--au-violet) 80%, transparent); box-shadow: 0 0 18px 2px #B07CFF66; }
+.mech h3 { font: 700 22px/1.1 'Cinzel', serif; letter-spacing: .08em; color: var(--au-gold-hi); }
+@media (max-width: 860px) { .room .top { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) { .mark h1 { animation: none; } }

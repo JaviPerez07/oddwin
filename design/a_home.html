@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ODDWIN Studios — Direction A · Release Slate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="oddwin.css">
+<style>
+  /* hero: copy and reel side by side, sized by the shorter of width/height */
+  .hero { position: relative; padding: clamp(28px, 6vh, 72px) 0 clamp(36px, 6vh, 72px); isolation: isolate; }
+  .hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 70% at 72% 45%, #D9B25A17, transparent 70%), radial-gradient(40% 60% at 10% 0%, #D9B25A0d, transparent 70%); }
+  .hero .stage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .hero .copy { container-type: inline-size; }
+  .hero h1 { font-size: clamp(36px, min(11.6cqi, 10.5vh), 98px); }
+  .hero p { color: #d8d2c6; font-size: clamp(16px, 1.2vw, 18px); margin-top: clamp(16px, 3vh, 28px); max-width: 44ch; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(18px, 3.5vh, 32px); }
+  /* the reel sits in a gold viewfinder: four corner marks, like a camera monitor */
+  .reel { position: relative; }
+  .reel .frame { position: relative; padding: 10px; }
+  .reel .frame::before, .reel .frame::after, .reel .frame i::before, .reel .frame i::after { content: ''; position: absolute; width: 22px; height: 22px; border: 0 solid var(--gold); }
+  .reel .frame::before { left: 0; top: 0; border-width: 1px 0 0 1px; } .reel .frame::after { right: 0; top: 0; border-width: 1px 1px 0 0; }
+  .reel .frame i::before { left: 0; bottom: 0; border-width: 0 0 1px 1px; } .reel .frame i::after { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+  .reel video { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--floor-2); box-shadow: 0 30px 80px #000a; }
+  .reel .prog { display: block; height: 1px; background: var(--rule); margin: 0 10px; }
+  .reel .prog i { display: block; height: 100%; width: 0; background: var(--gold); }
+  .reel .bar { display: flex; justify-content: space-between; gap: 16px; padding: 10px 10px 0; color: var(--soft); }
+  .reel .bar b { color: var(--gold-hi); font-weight: 500; }
+  .reel .rec { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #E8233F; margin-right: 8px; vertical-align: 1px; }
+
+  /* the slate, measured: four figures straight from the reports */
+  .figures { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: clamp(28px, 5vh, 56px); }
+  .figures div { padding: 22px 20px 24px; border-right: 1px solid var(--rule); container-type: inline-size; }
+  .figures div:first-child { padding-left: 0; } .figures div:last-child { border-right: 0; }
+  .figures b { display: block; font-size: clamp(30px, min(20cqi, 4vw), 56px); line-height: 1; }
+  .figures span { display: block; margin-top: 10px; color: var(--soft); font-size: 14px; }
+
+  /* the slate */
+  .title { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.2fr); gap: 0 32px; border-top: 1px solid var(--rule); padding: 34px 0; align-items: start; }
+  .title > div { container-type: inline-size; }
+  .title .n { font: 500 13px var(--mono); color: var(--gold); padding-top: 10px; }
+  .title h3 { font-size: clamp(36px, min(11cqi, 5vw), 74px); }
+  .title:hover h3 { animation: shine 1.6s cubic-bezier(.3,.6,.2,1) 1; }
+  .title h3 { background: linear-gradient(105deg, transparent 42%, #fffbe8d9 50%, transparent 58%) 100% 0 / 300% 100% no-repeat, var(--gold-metal); -webkit-background-clip: text; background-clip: text; }
+  .title .kicker { color: #cfc8ba; margin: 16px 0 24px; max-width: 46ch; }
+  .facts { display: grid; grid-template-columns: repeat(4, max-content); gap: 4px 28px; }
+  .facts dt { font: 500 11px var(--mono); color: var(--dim); text-transform: uppercase; letter-spacing: .06em; grid-row: 1; }
+  .facts dd { grid-row: 2; font: 600 16px/1.3 var(--text); font-variant-numeric: tabular-nums; }
+  .status { display: inline-flex; gap: 8px; align-items: center; margin-top: 22px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: #cfc8ba; }
+  .status i { width: 7px; height: 7px; background: var(--c); transform: rotate(45deg); }
+  .title .more { display: inline-flex; gap: 10px; align-items: center; margin-top: 22px; font: 600 14px var(--text); color: var(--gold-hi); border-bottom: 1px solid var(--gold-line); padding-bottom: 3px; transition: border-color .3s; }
+  .title .more:hover { border-color: var(--gold); }
+  .still { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--floor-2); outline: 1px solid var(--rule); outline-offset: 6px; transition: outline-color .4s; }
+  .title:hover .still { outline-color: var(--gold-line); }
+  .still video, .still img { width: 100%; height: 100%; object-fit: cover; }
+  .still .cap { position: absolute; left: 10px; bottom: 10px; font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; background: #07080Bd0; padding: 5px 8px; }
+  .still .tag { position: absolute; right: 10px; top: 10px; font: 500 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--floor); background: var(--c); padding: 4px 7px; }
+  .pending h3 { opacity: .55; }
+  .pending .still { display: grid; place-items: center; outline-style: dashed; background: repeating-linear-gradient(135deg, #0c0d10 0 14px, #0a0a0d 14px 28px); }
+  .pending .still span { font: 500 12px var(--mono); color: var(--dim); text-transform: uppercase; letter-spacing: .08em; text-align: center; line-height: 1.8; }
+
+  /* what ships */
+  .credits { display: grid; grid-template-columns: 1fr 1fr; gap: 0 72px; }
+  .credit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+  .credit b { font-size: 19px; line-height: 1.1; font-stretch: 112%; }
+  .credit span { color: var(--soft); font-size: 15px; }
+
+  /* deals: a hallmark letter per deal */
+  .deals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); }
+  .deal { padding: 26px 26px 32px; border-right: 1px solid var(--rule); container-type: inline-size; }
+  .deal:first-child { padding-left: 0; } .deal:last-child { border-right: 0; }
+  .deal .letter { display: block; font-size: 64px; line-height: .9; }
+  .deal h4 { font-size: clamp(18px, 9cqi, 24px); font-stretch: 112%; margin: 18px 0 10px; }
+  .deal p { color: var(--soft); font-size: 15px; }
+  .path { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 52px; }
+  .path div { position: relative; border-top: 1px solid var(--rule); padding-top: 16px; }
+  .path div::before { content: ''; position: absolute; left: 0; top: -1px; width: 48px; height: 1px; background: var(--gold); }
+  .path .mono { color: var(--gold); }
+  .path b { display: block; font: 650 17px var(--text); margin: 6px 0 4px; }
+  .path span { color: #a8a296; font-size: 14px; }
+
+  /* studio */
+  .studio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+  .studio p { color: #d0cabe; font-size: 18px; max-width: 52ch; }
+  .studio p + p { margin-top: 16px; }
+  .studio ul { list-style: none; border-top: 1px solid var(--rule); }
+  .studio li { display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--rule); font-size: 15px; color: var(--soft); }
+  .studio li b { font: 500 12px var(--mono); color: var(--gold); text-transform: uppercase; letter-spacing: .06em; padding-top: 3px; }
+
+  /* contact: the vault door, the emblem behind it */
+  .contact { position: relative; overflow: hidden; margin-top: clamp(96px, 14vh, 150px); background: radial-gradient(60% 90% at 85% 50%, #D9B25A12, transparent 70%), var(--floor-2); border-top: 1px solid var(--gold-line); isolation: isolate; }
+  .contact .emblem { position: absolute; right: -6%; top: 50%; width: min(560px, 56vw); transform: translateY(-50%); opacity: .07; z-index: -1; pointer-events: none; }
+  .contact .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; padding-top: 88px; padding-bottom: 88px; }
+  .contact .copy { container-type: inline-size; }
+  .contact h2 { font-size: clamp(40px, min(10.5cqi, 7vw), 84px); }
+  .contact p { font-size: 17px; color: #d0cabe; margin: 22px 0 26px; max-width: 46ch; }
+  .contact a.mail { font: 500 clamp(14px, 1.5vw, 19px) var(--mono); color: var(--gold-hi); border-bottom: 1px solid var(--gold); overflow-wrap: anywhere; }
+  .form { display: grid; gap: 14px; align-content: start; }
+  .form label { display: grid; gap: 4px; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--dim); }
+  .form input, .form select { font: 400 16px var(--text); color: var(--paper); background: transparent; border: 0; border-bottom: 1px solid #ffffff2a; padding: 8px 0 10px; border-radius: 0; outline: 0; transition: border-color .3s; }
+  .form input:focus, .form select:focus { border-color: var(--gold); }
+  .form select option { background: var(--floor-2); }
+  .form .btn { margin-top: 12px; width: max-content; }
+
+  /* motion: only transform/opacity; reduced motion shows everything at once */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .title:hover h3 { animation: none; } }
+
+  @media (max-width: 1100px) {
+    .hero .stage { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+    .credits { grid-template-columns: 1fr; }
+    .deals { grid-template-columns: 1fr 1fr; } .deal:nth-child(2) { border-right: 0; } .deal:nth-child(3) { padding-left: 0; }
+    .deal { border-bottom: 1px solid var(--rule); }
+    .path { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+    .studio, .contact .wrap { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 860px) {
+    .hero .stage { grid-template-columns: 1fr; }
+    .hero h1 { font-size: clamp(36px, 11cqi, 84px); }
+    .figures { grid-template-columns: 1fr 1fr; } .figures div:nth-child(2) { border-right: 0; } .figures div:nth-child(3) { padding-left: 0; } .figures div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+    .title { grid-template-columns: 1fr; gap: 14px; padding: 28px 0 32px; }
+    .title .still { order: -1; outline-offset: 4px; } .title .n { padding: 0; }
+    .title h3 { font-size: clamp(34px, 11cqi, 64px); }
+  }
+  @media (max-width: 560px) {
+    .figures div { padding: 18px 12px 20px 0; } .figures div + div { padding-left: 12px; } .figures div:nth-child(3) { padding-left: 0; }
+    .facts { grid-template-columns: repeat(2, max-content); } .facts dt:nth-of-type(n+3) { grid-row: 3; } .facts dd:nth-of-type(n+3) { grid-row: 4; }
+    .credit { grid-template-columns: 1fr; gap: 4px; }
+    .deals, .path { grid-template-columns: 1fr; } .deal, .deal:nth-child(3) { padding: 22px 0; border-right: 0; }
+    .studio li { grid-template-columns: 1fr; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#"><img src="assets/oddwin_wordmark.png" alt="ODDWIN Studios" width="108" height="28"></a>
+  <nav><a href="#slate">Games</a><a href="#ships">What ships</a><a href="#deals">Partners</a><a href="#studio">Studio</a><a href="#contact">Contact</a></nav>
+  <a class="access" href="#contact">Partner access →</a>
+</div></header>
+
+<div class="hero"><div class="wrap stage">
+  <div class="copy">
+    <h1 class="display gold shine rv">Original slots with a world of their own.</h1>
+    <p class="rv">We design, build and launch casino games — with the math, the game server and the launch film already done. For aggregators, distributors and operators.</p>
+    <div class="ctas rv"><a class="btn" href="#slate">See the slate</a><a class="btn ghost" href="#contact">Request partner access</a></div>
+  </div>
+  <figure class="reel rv">
+    <div class="frame"><i></i><video src="media/reel.mp4" poster="media/reel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Showreel: real gameplay from Page Breaker, Obsidian, Vice Miami Spin and Aura"></video></div>
+    <span class="prog"><i></i></span>
+    <figcaption class="bar mono"><span><span class="rec"></span>Reel 2026 · real gameplay, frame by frame</span><span><b id="tc">00:00:00</b></span></figcaption>
+  </figure>
+</div>
+<div class="wrap">
+  <div class="figures rv">
+    <div><b class="display gold">4</b><span>original titles in playable builds</span></div>
+    <div><b class="display gold">10M</b><span>rounds simulated per RTP version</span></div>
+    <div><b class="display gold">96%</b><span>top RTP version · 94, 92 and 88 also built</span></div>
+    <div><b class="display gold">10,000×</b><span>top max win on the slate</span></div>
+  </div>
+</div></div>
+
+<section id="slate"><div class="wrap">
+  <div class="sec-head"><span class="mono">01 · The slate</span><h2 class="display gold">Six titles. Six worlds.</h2><span class="mono">Figures from each game's PAR · not lab-certified</span></div>
+
+  <article class="title rv" style="--c:#E8233F">
+    <span class="n">01</span>
+    <div>
+      <h3 class="display gold">Page Breaker</h3>
+      <p class="kicker">A comic-book hero who knows he lives in a comic. He tears the page to respin, and picks fights with the artist who draws him.</p>
+      <dl class="facts"><dt>Grid</dt><dd>5×3 · 20</dd><dt>RTP</dt><dd>88.40–96.13%</dd><dt>Volatility</dt><dd>High</dd><dt>Max win</dt><dd>5,000×</dd></dl>
+      <span class="status"><i></i>Playable · private demo</span><br>
+      <a class="more" href="a_game.html">Enter the room →</a>
+    </div>
+    <figure class="still"><video data-src="media/pb_fight.mp4" poster="media/pb_fight.jpg" muted loop playsinline preload="none"></video><span class="tag">Real capture</span><span class="cap">The fight · K.O.</span></figure>
+  </article>
+
+  <article class="title rv" style="--c:#E0662A">
+    <span class="n">02</span>
+    <div>
+      <h3 class="display gold">Obsidian</h3>
+      <p class="kicker">A vault asleep beneath the volcano. Molten stones lock, the Crucible collects, and Vault Spins carry a molten multiplier up to ×10.</p>
+      <dl class="facts"><dt>Grid</dt><dd>5×3 · 20</dd><dt>RTP</dt><dd>88–96%</dd><dt>Volatility</dt><dd>High</dd><dt>Max win</dt><dd>10,000×</dd></dl>
+      <span class="status"><i></i>Playable · v1.0</span><br>
+      <a class="more" href="a_game_obsidian.html">Enter the room →</a>
+    </div>
+    <figure class="still"><video data-src="media/obs_lock.mp4" poster="media/obs_lock.jpg" muted loop playsinline preload="none"></video><span class="tag">Real capture</span><span class="cap">Molten Lock</span></figure>
+  </article>
+
+  <article class="title rv" style="--c:#A47BFF">
+    <span class="n">03</span>
+    <div>
+      <h3 class="display gold">Aura</h3>
+      <p class="kicker">An obsidian sanctuary and a celestial force held in a titan's hands. Ascension Hold &amp; Win with an Aura meter up to ×10.</p>
+      <dl class="facts"><dt>Grid</dt><dd>5×4 · 20</dd><dt>RTP</dt><dd>92.12–96.11%</dd><dt>Volatility</dt><dd>High</dd><dt>Max win</dt><dd>5,000×</dd></dl>
+      <span class="status"><i></i>Commercial candidate</span>
+    </div>
+    <figure class="still"><video data-src="media/aura_win.mp4" poster="assets/aura-keyart.webp" muted loop playsinline preload="none"></video><span class="tag">Real capture</span><span class="cap">Ascension</span></figure>
+  </article>
+
+  <article class="title rv" style="--c:#FF4FB0">
+    <span class="n">04</span>
+    <div>
+      <h3 class="display gold">Vice Miami Spin</h3>
+      <p class="kicker">Neon sunset, bags of cash and a six-bag heist. Collect takes everything; a full Heist Hold pays the Grand.</p>
+      <dl class="facts"><dt>Grid</dt><dd>5×3 · 20</dd><dt>RTP</dt><dd>88–96%</dd><dt>Volatility</dt><dd>High</dd><dt>Max win</dt><dd>5,000×</dd></dl>
+      <span class="status"><i></i>Playable · v0.3</span>
+    </div>
+    <figure class="still"><video data-src="media/vice_hold.mp4" poster="media/vice_hold.jpg" muted loop playsinline preload="none"></video><span class="tag">Real capture</span><span class="cap">Heist Hold</span></figure>
+  </article>
+
+  <article class="title pending rv" style="--c:#6E6A62">
+    <span class="n">05</span>
+    <div><h3 class="display gold">Bar &amp; Cigar</h3><p class="kicker">Partner studio title. Copy, figures and footage to come from its owner.</p><span class="status"><i></i>Material pending</span></div>
+    <figure class="still"><span>Real footage only<br>— waiting for the build —</span></figure>
+  </article>
+
+  <article class="title pending rv" style="--c:#6E6A62">
+    <span class="n">06</span>
+    <div><h3 class="display gold">Frutiger Eden</h3><p class="kicker">Partner studio title. Copy, figures and footage to come from its owner.</p><span class="status"><i></i>Material pending</span></div>
+    <figure class="still"><span>Real footage only<br>— waiting for the build —</span></figure>
+  </article>
+</div></section>
+
+<section id="ships"><div class="wrap">
+  <div class="sec-head"><span class="mono">02 · What ships</span><h2 class="display gold">Every title arrives ready to launch.</h2><span class="mono">Per title, per market</span></div>
+  <div class="credits">
+    <div class="credit rv"><b class="display gold-s">HTML5 build</b><span>Desktop and mobile, landscape and portrait layouts designed separately. PixiJS, frame times measured.</span></div>
+    <div class="credit rv"><b class="display gold-s">RTP versions + PAR</b><span>Up to four versions (96 / 94 / 92 / 88). Exact base-game calculation plus 10M-round simulation per version.</span></div>
+    <div class="credit rv"><b class="display gold-s">Reference game server</b><span>Signed rounds, idempotency, round recovery, multi-step bonuses resolved server-side, promo rounds.</span></div>
+    <div class="credit rv"><b class="display gold-s">Market profiles</b><span>Currency, language, bonus buy on/off, minimum spin time, session clock and net position, per jurisdiction.</span></div>
+    <div class="credit rv"><b class="display gold-s">Launch film</b><span>16:9 and 9:16 trailers cut from the real game, frame by frame. Cutdowns and key art for your lobby.</span></div>
+    <div class="credit rv"><b class="display gold-s">Integration &amp; compliance</b><span>API contract, integration guide and a compliance matrix to hand to your test lab.</span></div>
+  </div>
+</div></section>
+
+<section id="deals"><div class="wrap">
+  <div class="sec-head"><span class="mono">03 · Partners</span><h2 class="display gold">Four ways to work with us.</h2><span class="mono">Terms discussed per title</span></div>
+  <div class="deals">
+    <div class="deal rv"><span class="letter display gold">A</span><h4 class="display">Distribution</h4><p>Take the catalogue to your operators on a revenue share.</p></div>
+    <div class="deal rv"><span class="letter display gold">B</span><h4 class="display">Market exclusive</h4><p>A title only your brand runs, in the markets you choose.</p></div>
+    <div class="deal rv"><span class="letter display gold">C</span><h4 class="display">Bespoke &amp; reskin</h4><p>A new world on a proven engine, made with the same method.</p></div>
+    <div class="deal rv"><span class="letter display gold">D</span><h4 class="display">IP acquisition</h4><p>Buy the game outright: code, art sources, math and production records.</p></div>
+  </div>
+  <div class="path">
+    <div class="rv"><span class="mono">Step 1</span><b>20-minute call</b><span>Your markets, how you take content, timing.</span></div>
+    <div class="rv"><span class="mono">Step 2</span><b>Private build + PAR</b><span>Personal access to the playable build and the math.</span></div>
+    <div class="rv"><span class="mono">Step 3</span><b>Integration plan</b><span>Your RGS or ours, certification route per market.</span></div>
+    <div class="rv"><span class="mono">Step 4</span><b>Pilot</b><span>Live with telemetry; we read retention together.</span></div>
+  </div>
+</div></section>
+
+<section id="studio"><div class="wrap">
+  <div class="sec-head"><span class="mono">04 · Studio</span><h2 class="display gold">Two founders, one method.</h2><span class="mono">ODDWIN Studios</span></div>
+  <div class="studio">
+    <div>
+      <p class="rv">ODDWIN Studios is Javi and Nico. We start every game from its world and its math at the same time, and we don't call anything finished until it has been measured: the RTP, the frame time, the loudness of the trailer.</p>
+      <p class="rv">Every film you see here is the real game, captured frame by frame. No mock-ups, no pre-renders.</p>
+    </div>
+    <ul class="rv">
+      <li><b>Math</b>Exact calculation + 10M-round simulation per RTP version, PAR sheet</li>
+      <li><b>Engine</b>TypeScript, deterministic and seed-driven; the art never decides a result</li>
+      <li><b>Server</b>Reference RGS with signed rounds and recovery</li>
+      <li><b>Art &amp; film</b>Original characters and worlds; trailers made from the game itself</li>
+    </ul>
+  </div>
+</div></section>
+
+<div class="contact" id="contact">
+  <img class="emblem" data-qa-deco src="assets/oddwin_mono.png" alt="">
+  <div class="wrap">
+    <div class="copy">
+      <h2 class="display gold shine">Want one of these in your lobby?</h2>
+      <p>Tell us your company and markets. We reply with private access to the builds, the PAR sheets and a time for a call.</p>
+      <a class="mail" href="mailto:partnership@oddwinstudios.com">partnership@oddwinstudios.com</a>
+    </div>
+    <form class="form" onsubmit="return false">
+      <label>Company<input autocomplete="organization"></label>
+      <label>You are<select><option>Aggregator</option><option>Distributor</option><option>Operator</option><option>Studio</option></select></label>
+      <label>Markets<input placeholder="e.g. UK, ES, MGA"></label>
+      <label>Title of interest<select><option>Page Breaker</option><option>Obsidian</option><option>Aura</option><option>Vice Miami Spin</option><option>The whole slate</option></select></label>
+      <button class="btn">Request access</button>
+    </form>
+  </div>
+</div>
+
+<footer><div class="wrap">
+  <p>ODDWIN Studios builds games for licensed businesses only. Builds are prototypes and commercial candidates; math is simulated and exactly calculated, not yet certified by a test lab. No real-money play on this site. 18+.</p>
+  <span class="seal mono"><img src="assets/oddwin_mono.png" alt=""><span>© 2026 ODDWIN Studios</span></span>
+</div></footer>
+
+<script>
+  // Reveal on scroll (transform/opacity only); loops play while visible; reel timecode.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rv = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); rv.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el) => rv.observe(el));
+  const vids = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src && v.dataset.src) v.src = v.dataset.src; if (!reduce) v.play().catch(() => {}); }
+    else v.pause();
+  }), { threshold: .35 });
+  document.querySelectorAll('video[data-src]').forEach((v) => vids.observe(v));
+  const reel = document.querySelector('.reel video'), bar = document.querySelector('.reel .prog i'), tc = document.getElementById('tc');
+  if (reduce) reel.removeAttribute('autoplay'), reel.pause();
+  reel.addEventListener('timeupdate', () => {
+    const t = reel.currentTime, f = Math.floor((t % 1) * 30);
+    tc.textContent = ['00', String(Math.floor(t / 60)).padStart(2, '0'), String(Math.floor(t % 60)).padStart(2, '0'), String(f).padStart(2, '0')].join(':');
+    bar.style.width = (t / (reel.duration || 1)) * 100 + '%';
+  });
+</script>
+</body>
+</html>

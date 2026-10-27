@@ -1,0 +1,30 @@
+/* the game's own room on the ODDWIN floor: VICE MIAMI SPIN palette and type from game/src/style.css
+   (night violet, sunset gradient, neon pink and teal; Bowlby One SC logo, skewed, Barlow Condensed labels) */
+@font-face { font-family: 'Bowlby One SC'; src: url(/fonts/bowlby-one-sc.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Barlow Condensed'; src: url(/fonts/barlow-condensed-800.woff2) format('woff2'); font-weight: 800; font-display: swap; }
+:root { --vc-night: #12061f; --vc-violet: #2a0b45; --vc-pink: #ff2e88; --vc-hot: #ff4fa3; --vc-orange: #ff8a2b; --vc-sun: #ffc247; --vc-teal: #19e3d6; --vc-cream: #fff3e2; --vc-muted: #d9b8e8; }
+.room { position: relative; overflow: hidden; isolation: isolate; color: var(--vc-cream); }
+.room::before { content: ''; position: absolute; inset: 0; z-index: -2; background: url(/img/games/vice_bg.webp) center 60% / cover; filter: brightness(.5) saturate(1.05); }
+.room::after { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 70% at 30% 100%, #ff4fa340, transparent 70%), linear-gradient(180deg, #07080B 0%, #12061f99 30%, #12061fcc 75%, #07080B 100%); }
+.room .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: clamp(40px, 7vh, 84px); padding-bottom: clamp(56px, 9vh, 110px); }
+.mark { container-type: inline-size; }
+.logo-vice { display: block; font: 400 min(34cqi, 19vh, 170px)/.9 'Bowlby One SC', sans-serif; transform: skewX(-6deg); padding-left: .05em;
+  -webkit-text-stroke: .08em #14051f; paint-order: stroke fill; background: linear-gradient(180deg, #9b5cff, var(--vc-hot) 48%, var(--vc-orange));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 .05em 0 #0008) drop-shadow(0 0 30px #ff2e8855); }
+.logo-sub { display: block; font: 400 min(13.4cqi, 7.5vh, 66px)/1 'Bowlby One SC', sans-serif; letter-spacing: .05em; margin-top: .06em; transform: skewX(-9deg); padding-left: .1em;
+  -webkit-text-stroke: .08em #14051f; paint-order: stroke fill; background: linear-gradient(180deg, var(--vc-sun), var(--vc-orange) 55%, var(--vc-hot));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.line { font: 800 clamp(18px, 1.6vw, 22px)/1.3 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .02em; margin-top: clamp(20px, 4vh, 32px); max-width: 34ch; }
+.bags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 26px; }
+.bags span { font: 800 15px 'Barlow Condensed', sans-serif; letter-spacing: .06em; padding: 7px 14px; border-radius: 999px; border: 2px solid #19e3d68c; background: #14051fd1; }
+.bags b { color: var(--vc-sun); margin-left: 6px; }
+.woman { position: absolute; right: -1%; bottom: 0; height: 96%; max-height: 720px; z-index: -1; opacity: .3; pointer-events: none; }
+.player { position: relative; border-radius: 14px; border: 2px solid #ff4fa3b3; box-shadow: 0 0 0 5px #12061f, 0 0 40px #ff2e8866, 0 30px 80px #000c; }
+.player video { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; }
+.player .play-btn { position: absolute; left: 18px; bottom: 18px; font: 800 17px 'Barlow Condensed', sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #2a0b10; background: linear-gradient(180deg, var(--vc-sun), var(--vc-orange)); padding: 11px 20px; border-radius: 999px; box-shadow: 0 5px 0 #8a3d06, 0 0 24px #ff8a2b80; }
+.player .len { position: absolute; left: 0; top: calc(100% + 14px); font: 500 11px var(--mono); color: var(--vc-muted); letter-spacing: .06em; text-transform: uppercase; }
+/* retro sun stripes: the divider back to the ODDWIN floor */
+.sunset { display: block; height: 22px; background: repeating-linear-gradient(180deg, transparent 0 3px, var(--floor) 3px 6px), linear-gradient(90deg, #9b5cff, var(--vc-hot) 45%, var(--vc-orange)); opacity: .9; }
+.mech h3 { font: 800 24px/1.05 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .03em; color: var(--vc-hot); }
+@media (max-width: 860px) { .room .top { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .woman { height: 60%; opacity: .2; } }

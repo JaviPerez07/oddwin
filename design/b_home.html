@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ODDWIN Studios — Direction B · Catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EEEBE4; --paper-2: #E4E0D7; --ink: #111111; --soft: #5E5B55; --rule: #11111126; --gold: #B8912F;
+    --sans: 'Archivo', sans-serif; --mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  a { color: inherit; text-decoration: none; }
+  body { background: var(--paper); color: var(--ink); font: 400 16px/1.5 var(--sans); font-stretch: 100%; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px); }
+  img, video { max-width: 100%; }
+  .mono { font: 500 11.5px/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+  .wide { font-stretch: 125%; }
+  .narrow { font-stretch: 62%; }
+
+  header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; border-bottom: 1px solid var(--ink); }
+  header img { height: 34px; justify-self: center; }
+  header nav { display: flex; gap: 26px; font-size: 14px; }
+  header .r { justify-self: end; display: flex; gap: 18px; align-items: center; }
+  header .r b { font: 600 13px var(--sans); background: var(--ink); color: var(--paper); padding: 9px 14px; }
+
+  /* masthead */
+  .mast { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 24px; padding-top: 34px; }
+  .mast .meta { grid-column: 1 / -1; display: flex; justify-content: space-between; color: var(--soft); padding-bottom: 26px; }
+  .mast h1 { grid-column: 1 / 8; font: 800 clamp(52px, min(7.2vw, 13vh), 104px)/.86 var(--sans); font-stretch: 112%; letter-spacing: -.035em; }
+  .mast h1 em { font-style: normal; color: var(--soft); }
+  .mast .side { grid-column: 9 / 13; align-self: end; }
+  .mast .side p { font-size: 18px; line-height: 1.45; }
+  .mast .side .cta { display: flex; gap: 10px; margin-top: 22px; }
+  .btn { font: 600 15px var(--sans); padding: 14px 18px; background: var(--ink); color: var(--paper); }
+  .btn.line { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+
+  /* contact sheet of real frames */
+  .sheet { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto auto; gap: 14px; margin-top: 54px; }
+  .sheet figure:first-child { grid-row: 1 / 3; }
+  .sheet video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; background: var(--ink); }
+  .sheet figure:first-child video { aspect-ratio: auto; height: calc(100% - 30px); }
+  .sheet figure { min-width: 0; }
+  .sheet figcaption { padding-top: 8px; color: var(--soft); }
+  .sheet { row-gap: 18px; }
+
+  /* catalogue table */
+  section { padding-top: 110px; }
+  .shead { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; border-top: 2px solid var(--ink); padding-top: 14px; margin-bottom: 30px; }
+  .shead .mono { grid-column: 1 / 3; }
+  .shead h2 { grid-column: 3 / 10; font: 800 48px/.95 var(--sans); font-stretch: 110%; letter-spacing: -.02em; }
+  .shead .note { grid-column: 10 / 13; color: var(--soft); font-size: 14px; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--soft); padding: 0 12px 10px 0; border-bottom: 1px solid var(--ink); }
+  td { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--rule); vertical-align: middle; font: 400 14px var(--mono); }
+  td.t { font: 800 30px/1 var(--sans); font-stretch: 100%; letter-spacing: -.01em; }
+  td.t small { display: block; font: 400 13px/1.3 var(--sans); color: var(--soft); letter-spacing: 0; margin-top: 6px; }
+  td.thumb { width: 168px; } td.thumb img { width: 150px; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  td.thumb .ph { width: 150px; aspect-ratio: 16/9; border: 1px dashed #11111166; display: grid; place-items: center; font: 500 10px var(--mono); color: var(--soft); text-transform: uppercase; }
+  .chip { display: inline-block; width: 10px; height: 10px; background: var(--c); margin-right: 8px; vertical-align: 0; }
+  tr.pend td { color: var(--soft); }
+  td .go { font: 600 13px var(--sans); border-bottom: 1px solid var(--ink); }
+
+  /* bill of materials */
+  .bom { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+  .bom div { border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 22px 22px 26px; min-height: 190px; display: flex; flex-direction: column; }
+  .bom .mono { color: var(--soft); }
+  .bom h3 { font: 800 26px/1 var(--sans); font-stretch: 105%; letter-spacing: -.01em; margin: 26px 0 10px; }
+  .bom p { color: var(--soft); font-size: 15px; }
+
+  /* deals as spec rows */
+  .deals { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+  .deals .col { grid-column: span 3; border-top: 1px solid var(--ink); padding-top: 14px; }
+  .deals h3 { font: 800 30px/1 var(--sans); font-stretch: 105%; margin: 12px 0 10px; letter-spacing: -.015em; }
+  .deals p { color: var(--soft); font-size: 15px; }
+  .steps { margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr); background: var(--ink); color: var(--paper); }
+  .steps div { padding: 22px 22px 26px; border-right: 1px solid #ffffff2a; }
+  .steps b { display: block; font: 700 19px var(--sans); margin: 8px 0 4px; }
+  .steps span { color: #bdb8ad; font-size: 14px; }
+
+  .contact { margin-top: 120px; border-top: 2px solid var(--ink); }
+  .contact .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; padding-top: 30px; padding-bottom: 70px; }
+  .contact h2 { grid-column: 1 / 8; font: 800 clamp(52px, 6.6vw, 96px)/.86 var(--sans); font-stretch: 115%; letter-spacing: -.035em; }
+  .contact .side { grid-column: 9 / 13; align-self: end; }
+  .contact .side p { font-size: 17px; margin-bottom: 18px; }
+  .contact a.mail { font: 500 17px var(--mono); border-bottom: 2px solid var(--ink); overflow-wrap: anywhere; }
+  footer { border-top: 1px solid var(--ink); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 30px; padding-top: 20px; padding-bottom: 40px; color: var(--soft); font-size: 13px; }
+  footer p { max-width: 74ch; }
+
+  @media (max-width: 1100px) {
+    .mast h1 { grid-column: 1 / 8; } .mast .side { grid-column: 8 / 13; }
+    .shead { grid-template-columns: 1fr; gap: 6px; } .shead > * { grid-column: 1 !important; }
+    .bom { grid-template-columns: 1fr 1fr; }
+    .deals .col { grid-column: span 6; }
+    .contact .wrap { display: block; } .contact h2 { margin-bottom: 22px; }
+    td.thumb { width: 120px; } td.thumb img { width: 104px; }
+  }
+  @media (max-width: 900px) {
+    .mast { display: block; } .mast h1 { max-width: 14ch; } .mast .side { margin-top: 26px; max-width: 560px; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
+    header .wrap { grid-template-columns: auto 1fr; } header nav { display: none; } header img { justify-self: start; height: 28px; }
+    header .r span { display: none; }
+    .mast { display: block; } .mast .meta span:nth-child(2) { display: none; }
+    .mast h1 { font-size: 56px; } .mast .side { margin-top: 22px; }
+    .sheet { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .sheet figure:first-child { grid-column: 1 / 3; grid-row: auto; } .sheet figure:first-child video { aspect-ratio: 16/9; height: auto; }
+    .shead { display: block; } .shead h2 { font-size: 34px; margin: 8px 0; }
+    table thead { display: none; } table, tbody, tr, td { display: block; } tr { padding: 14px 0; border-bottom: 1px solid var(--ink); }
+    td { border: 0; padding: 3px 0; } td.thumb img, td.thumb .ph { width: 100%; } td.t { font-size: 28px; margin-top: 8px; }
+    td[data-l]::before { content: attr(data-l) ' '; color: var(--soft); font-size: 11px; text-transform: uppercase; }
+    .bom { grid-template-columns: 1fr; } .bom div { min-height: 0; }
+    .deals { display: block; } .deals .col { margin-bottom: 20px; }
+    .steps { grid-template-columns: 1fr; } .steps div { border-right: 0; border-bottom: 1px solid #ffffff2a; }
+    .contact .wrap { display: block; } .contact h2 { font-size: 52px; margin-bottom: 20px; }
+    footer .wrap { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <nav><a>Catalogue</a><a>What ships</a><a>Partners</a><a>Studio</a></nav>
+  <img src="assets/oddwin_wordmark.png" alt="ODDWIN Studios">
+  <div class="r"><span class="mono">EN / ES</span><b>Partner access</b></div>
+</div></header>
+
+<div class="wrap">
+  <div class="mast">
+    <div class="meta mono"><span>Catalogue 2026 · Edition 01</span><span>Original casino games for licensed businesses</span><span>B2B only · 18+</span></div>
+    <h1>Games built<br>like products. <em>Launched like films.</em></h1>
+    <div class="side">
+      <p>ODDWIN designs and builds original slots and hands them over complete: math with its PAR sheet, a reference game server, market profiles and the launch film.</p>
+      <div class="cta"><a class="btn">Browse the catalogue</a><a class="btn line">Talk to us</a></div>
+    </div>
+  </div>
+  <div class="sheet">
+    <figure><video data-src="media/obs_lock.mp4" poster="media/obs_lock.jpg" muted loop playsinline preload="none"></video><figcaption class="mono">Fig. 1 — Obsidian · Molten Lock, real capture</figcaption></figure>
+    <figure><video data-src="media/pb_dc.mp4" poster="media/pb_dc.jpg" muted loop playsinline preload="none"></video><figcaption class="mono">Fig. 2 — Page Breaker · Director's Cut</figcaption></figure>
+    <figure><video data-src="media/aura_win.mp4" poster="media/aura_win.jpg" muted loop playsinline preload="none"></video><figcaption class="mono">Fig. 3 — Aura · Ascension</figcaption></figure>
+    <figure><video data-src="media/vice_hold.mp4" poster="media/vice_hold.jpg" muted loop playsinline preload="none"></video><figcaption class="mono">Fig. 4 — Vice Miami Spin · Heist Hold</figcaption></figure>
+    <figure><video data-src="media/pb_fight.mp4" poster="media/pb_fight.jpg" muted loop playsinline preload="none"></video><figcaption class="mono">Fig. 5 — Page Breaker · the fight</figcaption></figure>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <div class="shead"><span class="mono">§ 1 · Catalogue</span><h2>Every title, with its numbers on the table.</h2><span class="note">Figures from each game's PAR sheet: exact base-game calculation + 10M-round simulation. Not yet lab-certified.</span></div>
+  <table>
+    <thead><tr><th></th><th>Title</th><th>Grid</th><th>RTP versions</th><th>Volatility</th><th>Max win</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      <tr style="--c:#C8102E"><td class="thumb"><img src="assets/pb_mystery.jpg" alt=""></td><td class="t"><span class="chip"></span>Page Breaker<small>Comic action · player-choice fight bonus</small></td><td data-l="Grid">5×3 · 20</td><td data-l="RTP">96.13 / 94.13 / 92.22 / 88.40</td><td data-l="Vol.">High · σ 8.8</td><td data-l="Max">5,000×</td><td data-l="Status">Private demo</td><td><a class="go" href="b_game.html">Open →</a></td></tr>
+      <tr style="--c:#E0662A"><td class="thumb"><img src="assets/obs_base.jpg" alt=""></td><td class="t"><span class="chip"></span>Obsidian<small>Volcanic vault · Collect + Hold &amp; Win</small></td><td data-l="Grid">5×3 · 20</td><td data-l="RTP">96 / 94 / 92 / 88</td><td data-l="Vol.">High · σ 11.6</td><td data-l="Max">10,000×</td><td data-l="Status">Playable v1.0</td><td><a class="go">Open →</a></td></tr>
+      <tr style="--c:#9B6BFF"><td class="thumb"><img src="assets/aura-keyart.webp" alt=""></td><td class="t"><span class="chip"></span>Aura<small>Myth · Ascension Hold &amp; Win, meter ×10</small></td><td data-l="Grid">5×4 · 20</td><td data-l="RTP">96.11 / 94.08 / 92.12</td><td data-l="Vol.">High · σ 10.1</td><td data-l="Max">5,000×</td><td data-l="Status">Commercial candidate</td><td><a class="go">Open →</a></td></tr>
+      <tr style="--c:#FF3EA5"><td class="thumb"><img src="assets/vice_hold.jpg" alt=""></td><td class="t"><span class="chip"></span>Vice Miami Spin<small>Neon heist · Collect + Heist Hold</small></td><td data-l="Grid">5×3 · 20</td><td data-l="RTP">96 / 94 / 92 / 88</td><td data-l="Vol.">High · σ 7.2</td><td data-l="Max">5,000×</td><td data-l="Status">Playable v0.3</td><td><a class="go">Open →</a></td></tr>
+      <tr class="pend" style="--c:#9a968e"><td class="thumb"><div class="ph">Footage pending</div></td><td class="t"><span class="chip"></span>Bar &amp; Cigar<small>Partner studio · material pending</small></td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pending</td><td></td></tr>
+      <tr class="pend" style="--c:#9a968e"><td class="thumb"><div class="ph">Footage pending</div></td><td class="t"><span class="chip"></span>Frutiger Eden<small>Partner studio · material pending</small></td><td>—</td><td>—</td><td>—</td><td>—</td><td>Pending</td><td></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section><div class="wrap">
+  <div class="shead"><span class="mono">§ 2 · What ships</span><h2>The bill of materials, per title.</h2><span class="note">The same package for every game, adapted to each market.</span></div>
+  <div class="bom">
+    <div><span class="mono">2.1</span><h3>HTML5 build</h3><p>Desktop and mobile, landscape and portrait designed separately. PixiJS, performance measured.</p></div>
+    <div><span class="mono">2.2</span><h3>RTP versions + PAR</h3><p>Up to four versions, exact base-game math and 10M-round simulation each.</p></div>
+    <div><span class="mono">2.3</span><h3>Reference game server</h3><p>Signed rounds, idempotency, round recovery, server-side multi-step bonuses.</p></div>
+    <div><span class="mono">2.4</span><h3>Market profiles</h3><p>Currency, language, bonus buy on/off, minimum spin time, session limits.</p></div>
+    <div><span class="mono">2.5</span><h3>Launch film</h3><p>16:9 and 9:16 trailers cut from the real game, frame by frame.</p></div>
+    <div><span class="mono">2.6</span><h3>Integration + compliance</h3><p>API contract, integration guide and a compliance matrix for your lab.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="shead"><span class="mono">§ 3 · Partners</span><h2>How a deal works.</h2><span class="note">Terms per title and per market.</span></div>
+  <div class="deals">
+    <div class="col"><span class="mono">3.1</span><h3>Distribution</h3><p>The catalogue for your operators, on a revenue share.</p></div>
+    <div class="col"><span class="mono">3.2</span><h3>Market exclusive</h3><p>A title only your brand runs, where you choose.</p></div>
+    <div class="col"><span class="mono">3.3</span><h3>Bespoke &amp; reskin</h3><p>A new world on a proven engine and method.</p></div>
+    <div class="col"><span class="mono">3.4</span><h3>IP acquisition</h3><p>Code, art sources, math and production records.</p></div>
+  </div>
+  <div class="steps">
+    <div><span class="mono">01</span><b>20-minute call</b><span>Markets, content intake, timing.</span></div>
+    <div><span class="mono">02</span><b>Private build + PAR</b><span>Personal access for your team.</span></div>
+    <div><span class="mono">03</span><b>Integration plan</b><span>Your RGS or ours; certification route.</span></div>
+    <div><span class="mono">04</span><b>Pilot</b><span>Live with telemetry, read together.</span></div>
+  </div>
+</div></section>
+
+<div class="contact"><div class="wrap">
+  <h2>Put a world in your lobby.</h2>
+  <div class="side"><p>Company, markets, the title you're after. We reply with private access and a time to talk.</p><a class="mail">partnership@oddwinstudios.com</a></div>
+</div></div>
+<footer><div class="wrap"><p>ODDWIN Studios supplies licensed businesses only. Builds are prototypes and commercial candidates; math is not yet certified by a test lab. No real-money play on this site. 18+.</p><span class="mono">© 2026 ODDWIN Studios</span></div></footer>
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver((es) => es.forEach((e) => { const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; if (!reduce) v.play().catch(() => {}); } else v.pause(); }), { threshold: .3 });
+  document.querySelectorAll('video[data-src]').forEach((v) => io.observe(v));
+</script>
+</body>
+</html>

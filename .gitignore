@@ -1,0 +1,7 @@
+.DS_Store
+site/dist/
+site/qa/shots/
+design/shots/
+capture/clips/
+capture/run_all.log
+design/media/
