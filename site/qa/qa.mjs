@@ -70,7 +70,7 @@ for (const line of readFileSync(new URL('../dist/_redirects', import.meta.url), 
   const r2 = await fetch(base + to.split('#')[0]);
   if (r1.status !== 301 || r1.headers.get('location') !== to || r2.status !== 200) { bad++; console.log(`✗ redirección ${probe} → ${r1.status} ${r1.headers.get('location')} (destino ${r2.status})`); }
 }
-for (const [u, code] of [['/', 200], ['/games/aura', 200], ['/legal', 200], ['/games/aura.html', 308], ['/nope', 404]]) {
+for (const [u, code] of [['/', 200], ['/games/aura', 200], ['/legal', 200], ['/games/aura.html', 301], ['/nope', 404]]) {
   const r = await fetch(base + u, { redirect: 'manual' }); if (r.status !== code) { bad++; console.log(`✗ ${u} → ${r.status}, esperaba ${code}`); }
 }
 console.log(bad ? `\n${bad} problemas` : '\nSin solapes, cortes ni scroll horizontal');

@@ -1,0 +1,19 @@
+// Production: the built site (dist/) served as Workers static assets on oddwinstudios.com and www.
+// worker.js adds the host-level 301s (http → https, www → apex, .html → clean); _redirects and _headers in dist/ apply as on Pages; clean URLs (/games/aura → games/aura.html); 404.html for misses.
+// Deploy: node generate-site.mjs && npx wrangler deploy
+{
+  "name": "oddwin-web",
+  "compatibility_date": "2026-10-20",
+  "main": "worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "oddwinstudios.com", "custom_domain": true },
+    { "pattern": "www.oddwinstudios.com", "custom_domain": true }
+  ]
+}

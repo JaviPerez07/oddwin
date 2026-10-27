@@ -3,7 +3,7 @@
 Static site generated with Node (no dependencies). Direction A, "Release Slate": ODDWIN gold, Archivo wide for headings,
 and one room per game in that game's own identity.
 
-**Nothing is published.** The live site is still `~/Projects/oddwin-studios-web` (Next.js on the Worker `oddwin`).
+**Live on oddwinstudios.com** (Worker `oddwin-web`). The previous Next.js site (`~/Projects/oddwin-studios-web`, Worker `oddwin`) is retired but kept for rollback.
 
 ## Commands
 
@@ -52,12 +52,18 @@ Never edit `dist/`: it is rebuilt on every run.
 4. One-page fact sheets in PDF (`static/docs/`).
 5. The partner portal (private builds and PAR sheets): Cloudflare Access by email, a later phase.
 
-## Deployment (when approved; nothing has been run)
+## Deployment (live since 27/10/2026)
 
-1. Create a Cloudflare Pages project with build `node generate-site.mjs --release` and output `dist`.
-2. Check it on the `*.pages.dev` URL with `BASE=https://… node qa/qa.mjs`.
-3. Move `oddwinstudios.com` off the Worker `oddwin` (remove its routes in `wrangler.jsonc` or in the dashboard) onto the
-   Pages project.
-4. In Cloudflare: Always Use HTTPS, plus a 301 redirect rule from `www.oddwinstudios.com/*` to `https://oddwinstudios.com/$1`.
-   (`_redirects` cannot filter by host; it only carries the retired routes.)
-5. Submit `sitemap.xml` in Search Console.
+`oddwinstudios.com` and `www` are served by the Worker **`oddwin-web`** with static assets (`wrangler.jsonc`):
+
+```bash
+node generate-site.mjs && npx wrangler deploy
+```
+
+- `worker.js` adds the host-level 301s that `_redirects` cannot express (http → https, www → apex, `.html` → clean URL);
+  `_redirects` (retired routes) and `_headers` (CSP, cache) in `dist/` apply as usual.
+- Custom domains belong to the Worker, which also creates their DNS records. The old Next.js Worker `oddwin` is still
+  in the account, without domains: to roll back, move both custom domains back to it.
+- `oddwin-web.pages.dev` (a Pages project with the same build) answers with `X-Robots-Tag: noindex`.
+- Once the legal data is in, deploy with `node generate-site.mjs --release && npx wrangler deploy`.
+- Pending: submit `https://oddwinstudios.com/sitemap.xml` in Search Console.

@@ -17,7 +17,7 @@ const match = (pat, p) => new RegExp('^' + pat.replace(/[.+?^${}()|[\]\\]/g, '\\
 createServer((req, res) => {
   const p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
   for (const [from, to, code] of redirects) if (match(from, p)) { res.writeHead(Number(code), { Location: to }); return res.end(); }
-  if (p.endsWith('.html')) { res.writeHead(308, { Location: p.replace(/(index)?\.html$/, '') || '/' }); return res.end(); }
+  if (p.endsWith('.html')) { res.writeHead(301, { Location: p.replace(/(index)?\.html$/, '') || '/' }); return res.end(); }
   let file = join(dist, p === '/' ? 'index.html' : p), status = 200;
   if (!existsSync(file) || statSync(file).isDirectory()) file = existsSync(file + '.html') ? file + '.html' : (status = 404, join(dist, '404.html'));
   const headers = { 'Content-Type': types[extname(file)] || 'application/octet-stream', 'Accept-Ranges': 'bytes' };
