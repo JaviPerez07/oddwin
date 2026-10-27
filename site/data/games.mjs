@@ -22,7 +22,7 @@ export const games = [
       { video: 'pb_rip', name: 'Rip & Respin', text: 'On a quiet spin Rip tears the page and respins the reels, holding the first two.', len: '0:06' },
       { video: 'pb_dc', name: 'Director\'s Cut', text: 'Ten free spins; every three collected levels up sticky wilds and adds spins.', len: '0:07' },
     ],
-    trailer: null, // EN cut pending (the 46 s trailer exists in Spanish only)
+    trailer: { src: 'page-breaker_46s_en.mp4', poster: 'pb_fight.jpg', len: '0:46' }, // EN cut: page-breaker/trailer/film_en
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance', 'lobby', 'sources'],
   },
   {

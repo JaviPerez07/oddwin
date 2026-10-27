@@ -41,13 +41,13 @@ Never edit `dist/`: it is rebuilt on every run.
 - **Every film is real gameplay in English**, captured frame by frame with a virtual clock (no dropped frames, however
   busy the machine is): `../capture/` holds the scripts (`run_all.sh`, `capture_showcase.mjs`, `capture_pb.mjs`) and
   `cut_loops.mjs`, which cuts the loops and the home reel into `static/media/`.
-- **Trailer button:** it only appears if the game has an English cut (AURA today). The others say
+- **Trailer button:** it only appears if the game has an English cut (AURA and PAGE BREAKER today). The others say
   "English trailer in production".
 
 ## Pending before publishing
 
 1. Legal data (company name, tax ID, address) in `data/site.mjs`; `--release` blocks until it is there.
-2. English trailers for PAGE BREAKER, OBSIDIAN and VICE (oddwin-cinematics); the loops are already clean English captures.
+2. English trailers for OBSIDIAN and VICE (oddwin-cinematics); the loops are already clean English captures. PAGE BREAKER's English cut is built by `page-breaker/trailer/film/tools/make_en.py`.
 3. Bar & Cigar and Frutiger Eden: written permission, figures and footage from their owner (today: "material pending").
 4. One-page fact sheets in PDF (`static/docs/`).
 5. The partner portal (private builds and PAR sheets): Cloudflare Access by email, a later phase.
