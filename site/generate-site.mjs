@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ODDWIN Studios · static site generator. Edit data/ and src/, never dist/.
-//   node generate-site.mjs            → dist/ (draft: legal gaps allowed, marked on the page)
+//   node generate-site.mjs            → dist/ (company fields still null are left out of the public pages; see LEGAL_TODO.md)
 //   node generate-site.mjs --release  → fails if any legal field is still empty
 // Output is plain HTML/CSS for Cloudflare Pages: clean URLs (file.html served as /file), 301-only redirects.
 import { rmSync, mkdirSync, cpSync, writeFileSync, readFileSync, existsSync, statSync, readdirSync } from 'node:fs';
@@ -71,6 +71,6 @@ for (const f of files.filter((f) => /\.(html|css)$/.test(f))) {
 }
 const size = files.reduce((n, f) => n + statSync(f).size, 0);
 console.log(`${pages.length + 1} pages · ${files.length} files · ${(size / 1048576).toFixed(1)} MB → dist/`);
-if (missing.length) console.log(`! draft: legal data pending (${missing.join(', ')}) — shown as gaps on /legal and /privacy`);
+if (missing.length) console.log(`! company details still to complete (${missing.join(', ')}) — left out of /legal and /privacy, listed in LEGAL_TODO.md`);
 if (errors.length) { console.error(errors.map((e) => '✗ ' + e).join('\n')); process.exit(1); }
 console.log('✓ links, assets, file sizes and CSP checks pass');

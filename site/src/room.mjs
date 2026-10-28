@@ -1,6 +1,6 @@
 // Game rooms: the top of the page takes the game's own identity; the rest stands on the ODDWIN floor.
 import { site } from '../data/site.mjs';
-import { games, kitItems } from '../data/games.mjs';
+import { games } from '../data/games.mjs';
 import { page, esc, breadcrumbs } from './layout.mjs';
 import { existsSync } from 'node:fs';
 
@@ -103,34 +103,39 @@ const heroes = {
   <span class="alert-band" aria-hidden="true"></span>`,
 };
 
-const kitRow = (g, key, staticDir) => {
-  const [label, access] = kitItems[key];
-  if (key === 'trailer' && g.trailer) return `<li>${label}<button class="link" type="button" data-film="/video/${g.trailer.src}" data-poster="/media/${g.trailer.poster}" data-title="${esc(g.name)} · trailer ${g.trailer.len}">Watch</button></li>`;
-  if (access === 'public') {
-    const file = `docs/${g.slug}-${key}.pdf`;
-    return existsSync(`${staticDir}/${file}`) ? `<li>${label}<a class="link" href="/${file}">Download</a></li>` : `<li>${label}<span>On request</span></li>`;
-  }
-  return `<li>${label}<span>${access === 'ip' ? 'On IP deals' : 'Partner access'}</span></li>`;
+// Status and deliverables, checked per title (docs flags in data/games.mjs come from each project's docs folder).
+const statusList = (g) => {
+  const row = (ok, k, v) => `<li class="${ok ? 'y' : 'n'}"><i aria-hidden="true"></i><b>${k}</b><span>${v}</span></li>`;
+  return [
+    row(true, 'Game build', 'Playable · HTML5, desktop and mobile'),
+    row(g.demo, 'Private demo', g.demo ? 'By invitation, fictional credits' : 'Evaluation build in preparation'),
+    row(true, 'Math report', `${g.rtp.length} RTP versions · ${esc(g.math)}`),
+    row(true, 'Integration', 'Integration guide and reference game server'),
+    row(g.docs.compliance, 'Compliance matrix', g.docs.compliance ? `Market profiles documented${g.docs.lab ? ' · lab submission pack prepared' : ''}` : 'Not written yet'),
+    row(!!g.trailer, 'English trailer', g.trailer ? `Yes · ${g.trailer.len}` : 'In production (Spanish cut exists)'),
+    row(false, 'Lab certification', 'Agreed with each partner, for each market'),
+  ].join('\n      ');
 };
+
+const factsheet = (g, staticDir) => existsSync(`${staticDir}/docs/${g.slug}-factsheet.pdf`)
+  ? `<a class="btn ghost" href="/docs/${g.slug}-factsheet.pdf" download>Download the fact sheet (PDF)</a>` : '';
 
 export function room(g, staticDir) {
   const i = games.indexOf(g), next = games[(i + 1) % games.length], prev = games[(i - 1 + games.length) % games.length];
+  const demo = `/?game=${g.slug}#contact`;
   const body = `
-<div class="wrap crumb mono"><a href="/#slate">Games</a> / ${g.no} / <b>${esc(g.name)}</b></div>
+<div class="wrap crumb mono"><a href="/#games">Games</a> / ${g.no} / <b>${esc(g.name)}</b></div>
 
 <div class="room room-${g.room}">${heroes[g.room](g)}
 </div>
 
-<section><div class="wrap">
-  <div class="sec-head"><span class="mono">Key figures</span><h2 class="display gold">The numbers, from the PAR.</h2><span class="mono">${g.math} · not lab-certified</span></div>
-  <dl class="par">
-    ${g.par.map(([k, v, s]) => `<div><dt>${k}</dt><dd>${v}</dd><small>${esc(s)}</small></div>`).join('\n    ')}
-  </dl>
-  <div class="rtp"><span>RTP versions</span>${g.rtp.map((r) => `<b>${r}</b>`).join('')}<span>· ${esc(g.buy)}</span></div>
+<section class="glance"><div class="wrap">
+  <p class="concept">${esc(g.concept)}</p>
+  <div class="acts"><a class="btn" href="${demo}" data-game-link="${g.slug}">Request a private demo of ${esc(g.name)}</a>${factsheet(g, staticDir)}</div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head"><span class="mono">Mechanics</span><h2 class="display gold">${esc(g.mechanicsTitle)}</h2><span class="mono">Loops are real captures</span></div>
+  <div class="sec-head"><span class="mono">Three differences</span><h2 class="display gold">${esc(g.mechanicsTitle)}</h2><span class="mono">Loops are real captures</span></div>
   <div class="mech">
     ${g.mechanics.map((m) => `<figure><video data-src="/media/${m.video}.mp4" poster="/media/${m.video}.jpg" muted loop playsinline preload="none" aria-label="${esc(g.name)}, ${esc(m.name)}, real capture"></video><figcaption><h3>${esc(m.name)}</h3><p>${esc(m.text)}</p><span class="mono">Real capture · ${m.len}</span></figcaption></figure>`).join('\n    ')}
   </div>${g.walkthrough ? `
@@ -138,11 +143,34 @@ export function room(g, staticDir) {
 </div></section>
 
 <section><div class="wrap">
-  <div class="sec-head"><span class="mono">Partner kit</span><h2 class="display gold">What you get with ${esc(g.name)}.</h2><span class="mono">Private access per company</span></div>
-  <ul class="kit">
-    ${g.kit.map((k) => kitRow(g, k, staticDir)).join('\n    ')}
-  </ul>
-  <div class="ask"><a class="btn" href="/#contact">Request access to ${esc(g.name)}</a><p>Access is personal: each partner signs in with their work email. No real-money play; 18+.</p></div>
+  <div class="sec-head"><span class="mono">Status and deliverables</span><h2 class="display gold">Where ${esc(g.name)} stands.</h2><span class="mono">Checked ${site.updated}</span></div>
+  <div class="state">
+    <ul class="checks">
+      ${statusList(g)}
+    </ul>
+    <div class="adapt">
+      <h3 class="display gold-s">Possible adaptations</h3>
+      <ul>
+        <li>Languages, currencies and market profiles</li>
+        <li>RTP version and bet range${g.buy && !/^no bonus buy/.test(g.buy) ? '; bonus buy on or off per market' : ''}</li>
+        <li>Integration with your RGS or API</li>
+        <li>Lobby art, cutdowns and labels for your brand</li>
+      </ul>
+      <p>Each change is scoped with you first: what it touches, how long it takes and whether it needs new math or a new certification.</p>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <details class="tech">
+    <summary><span class="mono">Technical data</span><span class="display gold-s">Key figures from the math report</span><span class="mono">${g.math} · not lab-certified</span></summary>
+    <dl class="par">
+      ${g.par.map(([k, v, s]) => `<div><dt>${k}</dt><dd>${v}</dd><small>${esc(s)}</small></div>`).join('\n      ')}
+    </dl>
+    <div class="rtp"><span>RTP versions</span>${g.rtp.map((r) => `<b>${r}</b>`).join('')}<span>· ${esc(g.buy)}</span></div>
+    <p class="note">The full PAR sheet, the integration guide and the compliance documents are shared privately with evaluating partners.</p>
+  </details>
+  <div class="ask"><a class="btn" href="${demo}" data-game-link="${g.slug}">Request a private demo of ${esc(g.name)}</a><p>We review each request and send a personal invitation. Fictional credits only — no real-money play. 18+.</p></div>
 </div></section>
 
 <nav class="next" aria-label="More titles"><div class="wrap"><a href="/games/${prev.slug}" class="mono">← ${prev.no} · ${esc(prev.name)}</a><a href="/games/${next.slug}"><b class="display gold">${esc(next.name)} →</b></a></div></nav>`;
@@ -150,7 +178,7 @@ export function room(g, staticDir) {
   return page({
     path: `/games/${g.slug}`, title: `${g.fullName || g.name} — ODDWIN Studios`, description: g.description,
     css: [`/css/rooms/${g.room}.css`], body, image: `/media/${g.hero.video}.jpg`,
-    schema: [breadcrumbs([['ODDWIN Studios', '/'], ['Games', '/#slate'], [g.name, `/games/${g.slug}`]])],
+    schema: [breadcrumbs([['ODDWIN Studios', '/'], ['Games', '/#games'], [g.name, `/games/${g.slug}`]])],
   });
 }
 

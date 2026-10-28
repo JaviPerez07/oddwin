@@ -26,6 +26,7 @@ for (const f of pages) for (const [w, h] of sizes) {
     const out = [];
     const leaves = [...document.querySelectorAll('body *')].filter((el) => {
       if (el.closest('[data-qa-ignore]')) return false;
+      if (el.checkVisibility && !el.checkVisibility({ contentVisibilityAuto: true })) return false;   // e.g. inside a closed <details>
       const own = [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
       const st = getComputedStyle(el);
       return own && st.visibility !== 'hidden' && st.opacity !== '0' && el.getClientRects().length;

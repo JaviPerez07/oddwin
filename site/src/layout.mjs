@@ -33,15 +33,15 @@ ${schema.map((s) => `<script type="application/ld+json">${json(s)}</script>`).jo
 <header class="top"><div class="wrap">
   <a class="logo" href="/"><img src="/img/brand/oddwin_wordmark.png" alt="ODDWIN Studios" width="108" height="28"></a>
   <nav aria-label="Main">${nav.map(([t, h]) => `<a href="${h}">${t}</a>`).join('')}</nav>
-  <a class="access" href="/#contact">Partner access →</a>
+  <a class="access" href="/#contact">Request a private demo →</a>
 </div></header>
 <main id="main">
 ${body}
 </main>
 <footer><div class="wrap">
   <div>
-  <p>ODDWIN Studios builds games for licensed businesses only. Builds are prototypes and commercial candidates; math is simulated and exactly calculated, not yet certified by a test lab. No real-money play on this site. 18+.</p>
-  <p class="links"><a href="/legal">Legal notice</a><a href="/privacy">Privacy</a></p>
+  <p>ODDWIN Studios presents its games to businesses only. The games are playable and available for evaluation; their math is calculated and simulated, not yet certified by a test lab. Demos use fictional credits — no real-money play. 18+.</p>
+  <p class="links"><a href="/legal">Legal notice</a><a href="/privacy">Privacy</a>${site.demoLive ? `<a href="${site.demoOrigin}/">Invited? Open your private demo</a>` : ''}</p>
   </div>
   <span class="seal mono"><img src="/img/brand/oddwin_mono.png" alt="" width="34" height="35"><span>© ${site.year} ODDWIN Studios</span></span>
 </div></footer>

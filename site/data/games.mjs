@@ -22,8 +22,10 @@ export const games = [
       { video: 'pb_rip', name: 'Rip & Respin', text: 'On a quiet spin Rip tears the page and respins the reels, holding the first two.', len: '0:06' },
       { video: 'pb_dc', name: 'Director\'s Cut', text: 'Ten free spins; every three collected levels up sticky wilds and adds spins.', len: '0:07' },
     ],
+    concept: 'A comic-book slot whose hero knows he is in a comic, with a fight bonus where the player picks the risk.',
+    featured: true, docs: { math: true, integration: true, rgs: true, ...{ compliance: false } }, demo: true, // demo: true only once its private evaluation build is verified
     trailer: { src: 'page-breaker_46s_en.mp4', poster: 'pb_fight.jpg', len: '0:46' }, // EN cut: page-breaker/trailer/film_en
-    kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance', 'lobby', 'sources'],
+    kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'lobby', 'sources'], // no compliance matrix written yet
   },
   {
     slug: 'obsidian', no: '02', name: 'Obsidian', fullName: 'Obsidian · The Lost Vault', room: 'obsidian', accent: '#E0662A',
@@ -46,7 +48,9 @@ export const games = [
       { video: 'obs_lock', name: 'Molten Lock', text: 'Six or more stones lock in place for three respins that reset with every new stone. A full vault pays the Grand.', len: '0:07' },
       { video: 'obs_fs', name: 'Vault Spins', text: 'Three keys open eight spins, retriggerable to 48. Every Crucible raises the molten multiplier ×1 → ×10.', len: '0:07' },
     ],
-    trailer: null, // EN cut pending
+    concept: 'A volcanic-vault Hold & Win with a collector, locking stones and free spins with a molten multiplier up to ×10.',
+    featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
+    trailer: { src: 'obsidian_55s_en.mp4', poster: 'obsidian_55s_en.jpg', len: '0:55' }, // EN cut: obsidian-vault/trailer/edit_en.sh
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
   {
@@ -70,6 +74,8 @@ export const games = [
       { video: 'aura_eclipse', name: 'Eclipse', text: 'Three, four or five Eclipse discs give 8, 10 or 12 free spins, with an Aura meter that never resets.', len: '0:07' },
       { video: 'aura_hands', name: 'The Titan\'s Hands', text: 'The golden hands rise from the corners and cup an orb: +1× on the multiplier, every time.', len: '0:06' },
     ],
+    concept: 'A monumental Hold & Win where an Aura meter climbs to ×10 — built without bonus buy, autoplay or turbo.',
+    featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true, lab: true } }, demo: true, // demo: true only once its private evaluation build is verified
     trailer: { src: 'aura_30s_en.mp4', poster: 'aura_hands.jpg', len: '0:30' },
     walkthrough: { src: 'aura_features_en.mp4', len: '0:57' },
     kit: ['trailer', 'factsheet', 'build', 'par3', 'integration', 'compliance', 'lab', 'lobby'],
@@ -95,7 +101,9 @@ export const games = [
       { video: 'vice_hold', name: 'Heist Hold', text: 'Six bags start the hold. Bags stay, every new one resets the respins, and a full screen pays the Grand.', len: '0:07' },
       { video: 'vice_fs', name: 'Sunset Heist', text: 'Three briefcases open retriggerable free spins with more money on the reels.', len: '0:07' },
     ],
-    trailer: null, // EN cut pending
+    concept: 'A neon Miami heist: cash bags, a Collect bag and a six-bag Hold & Win with four jackpots.',
+    featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
+    trailer: { src: 'vice-miami-spin_54s_en.mp4', poster: 'vice-miami-spin_54s_en.jpg', len: '0:54' }, // EN cut: vice-miami-spin/trailer/make_en.py
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
   {
@@ -119,7 +127,9 @@ export const games = [
       { video: 'bc_round', name: 'One More Round', text: 'Three, four or five bells pour 8, 10 or 12 rounds. La Cuenta — the tab — starts at ×2 and climbs +1 per bell up to ×10; three bells in one round pour ¡Otra Ronda!, four more.', len: '0:07' },
       { video: 'bc_happy', name: 'La Hora Feliz', text: 'Happy hour: six or more house tokens stay for three respins that reset with every new token. La Caja on reel 5 collects them all; fill twenty cells for the Gran Reserva.', len: '0:07' },
     ],
-    trailer: null, // EN cut pending (the 50 s trailer exists in Spanish only)
+    concept: 'A tavern comedy where smoke turns into wilds, the bar keeps pouring free rounds and happy hour holds the tokens.',
+    featured: true, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
+    trailer: { src: 'bar-and-cigar_50s_en.mp4', poster: 'bar-and-cigar_50s_en.jpg', len: '0:50' }, // EN cut: bar-and-cigar/trailer/film_en
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
   {
@@ -143,7 +153,9 @@ export const games = [
       { video: 'eden_nova', name: 'Aqua Nova', text: 'Eight spins that keep the water between spins. Every two winning cascades the column blooms: +1 multiplier up to ×5 and +2 spins, up to twenty.', len: '0:07' },
       { video: 'eden_lagoon', name: 'Pearl Lagoon', text: 'Six or more pearls lock for three respins that reset with every new pearl. Fill all twenty cells for the Grand.', len: '0:07' },
     ],
-    trailer: null, // EN cut pending (the 44 s trailer exists in Spanish only)
+    concept: 'A glass-and-water paradise with cascades, a filling Ecosystem column and a pearl Hold & Win.',
+    featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
+    trailer: { src: 'frutiger-eden_44s_en.mp4', poster: 'frutiger-eden_44s_en.jpg', len: '0:44' }, // EN cut: eden/trailer/film_en
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
   {
@@ -167,7 +179,9 @@ export const games = [
       { video: 'da_emergency', name: 'Emergency Broadcast', text: 'Six or more sightings lock for three respins that reset with every new one. Advisory, Alert and Emergency plates; fill all fifteen for End of Broadcast.', len: '0:07' },
       { video: 'da_building', name: 'It’s in the Building', text: 'Eight transmissions. Something crawls along a route of adjacent monitors and they turn into EYE wilds. Above 250× the celebration runs in reverse: silence, black, one line and the figure.', len: '0:07' },
     ],
-    trailer: null, // EN cut pending (the 30 s trailer and the 89 s walkthrough exist in Spanish only)
+    concept: 'Analogue horror without gore: a broadcast at 03:13, a Signal meter and an Emergency Broadcast Hold & Win.',
+    featured: true, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
+    trailer: { src: 'dead-air_30s_en.mp4', poster: 'dead-air_30s_en.jpg', len: '0:30' }, // EN cut: dead-air/trailer/film_h30_en (89 s walkthrough: Spanish only)
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance', 'sources'],
   },
 ];

@@ -1,0 +1,18 @@
+// demo.oddwinstudios.com — private evaluation builds by invitation (worker.js checks every request, files included).
+// Build: node assemble.mjs (copies verified builds/ into public/) · Deploy: npx wrangler deploy
+// Secret (set once, never in the repo): SESSION_KEY — `openssl rand -hex 32 | npx wrangler secret put SESSION_KEY`
+{
+  "name": "oddwin-demos",
+  "compatibility_date": "2026-10-20",
+  "main": "worker.js",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  },
+  "kv_namespaces": [{ "binding": "INVITES", "id": "b9e28e46ebfb4fb1943dd359b5eaa863" }],
+  "observability": { "enabled": true },
+  "routes": [{ "pattern": "demo.oddwinstudios.com", "custom_domain": true }]
+}

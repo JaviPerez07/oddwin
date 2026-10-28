@@ -36,8 +36,13 @@ Never edit `dist/`: it is rebuilt on every run.
 - **Clean URLs:** `games/aura.html` is served as `/games/aura`; the canonical has no `www` and no `.html`.
 - **Fonts are self-hosted** and subset (OFL, see `static/fonts/LICENSES.txt`). There are no requests to third
   parties, no cookies and no analytics, which is what `/privacy` says.
-- **Contact without a server:** the form opens an email to partnership@ with the fields filled in. To receive requests
-  on the web instead, add a Pages Function (for example with Resend) and update `/privacy`.
+- **Demo request form:** posts to `/api/demo-request` (`worker/demo-request.js`): server-side validation, honeypot +
+  minimum fill time, rate limits, idempotency key, a copy in KV (`REQUESTS`) and a notification to the team through
+  Zoho SMTP (`worker/smtp.js`, authenticated as our own mailbox, visitor in Reply-To). Secrets: `SMTP_USER`,
+  `SMTP_PASS`, `NOTIFY_TO`, `IP_SALT` (`npx wrangler secret put …`). Without SMTP secrets the request is still stored
+  and the visitor is asked to email partnership@ too.
+- **Private demos:** `../demos/` (demo.oddwinstudios.com, invitation-only Worker) — procedure in `../demos/README.md`.
+- **Fact sheets:** `node tools/factsheets.mjs` prints `static/docs/<slug>-factsheet.pdf` from `data/games.mjs`.
 - **Every film is real gameplay in English**, captured frame by frame with a virtual clock (no dropped frames, however
   busy the machine is): `../capture/` holds the scripts (`run_all.sh`, `capture_showcase.mjs`, `capture_pb.mjs`) and
   `cut_loops.mjs`, which cuts the loops and the home reel into `static/media/`.

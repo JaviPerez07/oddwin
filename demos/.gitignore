@@ -1,0 +1,4 @@
+public/
+builds/
+.wrangler/
+.dev.vars

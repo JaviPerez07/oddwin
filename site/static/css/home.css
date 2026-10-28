@@ -123,3 +123,65 @@
     .deals, .path { grid-template-columns: 1fr; } .deal, .deal:nth-child(3) { padding: 22px 0; border-right: 0; }
     .studio li { grid-template-columns: 1fr; gap: 2px; }
   }
+
+  /* featured rows: two links, the game page and its demo request */
+  .go { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 4px; }
+  .title .more.alt { color: var(--paper); border-color: var(--rule); }
+  .sec-head.sub { margin-top: clamp(56px, 8vh, 88px); }
+  /* the rest of the catalogue, compact */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 28px 24px; }
+  .card { display: grid; align-content: start; gap: 8px; container-type: inline-size; }
+  .card .pic { display: block; aspect-ratio: 16/9; overflow: hidden; background: var(--floor-2); outline: 1px solid var(--rule); outline-offset: 4px; margin-bottom: 10px; }
+  .card .pic video { width: 100%; height: 100%; object-fit: cover; }
+  .card .n { color: var(--gold); font-size: 12px; }
+  .card h3 { font-size: clamp(22px, 9cqi, 30px); font-stretch: 112%; }
+  .card p { color: var(--soft); font-size: 15px; }
+  .card .spec { color: var(--dim); font-size: 12px; }
+  .card .more { font: 600 14px var(--text); color: var(--gold-hi); border-bottom: 1px solid var(--gold-line); width: max-content; max-width: 100%; padding-bottom: 3px; margin-top: 6px; }
+  /* status per title */
+  .tbl { overflow-x: auto; border-top: 1px solid var(--rule); }
+  .tbl table { width: 100%; border-collapse: collapse; min-width: 860px; font-size: 14px; }
+  .tbl th, .tbl td { text-align: left; padding: 13px 14px 13px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+  .tbl thead th { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--dim); }
+  .tbl tbody th a { font-weight: 650; color: var(--paper); } .tbl tbody th a:hover { color: var(--gold-hi); }
+  .tbl td i { margin-right: 9px; } .tbl td.n { color: var(--dim); }
+  .foot { color: var(--soft); font-size: 15px; margin-top: 18px; max-width: 80ch; }
+  /* deliverables + adaptations */
+  .two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+  .two .credits { grid-template-columns: 1fr; }
+  .adapt { background: var(--floor-2); border: 1px solid var(--rule); padding: 24px 26px 26px; }
+  .adapt h3 { font-size: 19px; font-stretch: 112%; }
+  .adapt ul { list-style: none; margin: 16px 0; }
+  .adapt li { padding: 8px 0 8px 20px; position: relative; font-size: 15px; border-bottom: 1px solid var(--rule); }
+  .adapt li::before { content: ''; position: absolute; left: 0; top: 16px; width: 8px; height: 1px; background: var(--gold); }
+  .adapt p { color: var(--dim); font-size: 14px; }
+  .deals.three { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 52px; }
+  /* demo request form */
+  .form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form label small { text-transform: none; letter-spacing: 0; color: #6f6b64; }
+  .form textarea { font: 400 16px var(--text); color: var(--paper); background: transparent; border: 1px solid #ffffff2a; padding: 8px 10px; resize: vertical; outline: 0; }
+  .form textarea:focus { border-color: var(--gold); }
+  .form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .form .msg { font: 500 14px var(--text); min-height: 1.2em; }
+  .form .msg.ok { color: #9fe0a8; } .form .msg.err { color: #ff9a8a; }
+  .form [aria-invalid="true"] { border-color: #ff7a6a; }
+  .form button[disabled] { opacity: .6; cursor: progress; }
+  .contact p.alt { margin-top: 0; font-size: 15px; }
+  @media (max-width: 1100px) { .two { grid-template-columns: 1fr; } .deals.three { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .form .row2 { grid-template-columns: 1fr; } .deals.three { grid-template-columns: 1fr; } }
+  /* the status table becomes one card per game on narrow screens */
+  @media (max-width: 860px) {
+    .tbl { overflow: visible; border-top: 0; }
+    .tbl table { min-width: 0; } .tbl thead { display: none; }
+    .tbl tbody, .tbl tr { display: block; }
+    .tbl tr { border-top: 1px solid var(--rule); padding: 14px 0 6px; }
+    .tbl th, .tbl td { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px; border: 0; padding: 4px 0; white-space: normal; }
+    .tbl tbody th { display: block; font-size: 17px; padding-bottom: 8px; }
+    .tbl td::before { content: attr(data-label); font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--dim); padding-top: 2px; }
+    .tbl td i { display: none; }
+  }
+
+  /* hybrid commercial model under the three deals */
+  .model { margin-top: 36px; padding: 22px 0 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; }
+  .model p { margin: 0; max-width: 72ch; }
+  @media (max-width: 760px) { .model { grid-template-columns: 1fr; gap: 8px; } }
