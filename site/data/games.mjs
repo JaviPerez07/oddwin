@@ -98,13 +98,82 @@ export const games = [
     trailer: null, // EN cut pending
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
+  {
+    slug: 'bar-and-cigar', no: '05', name: 'Bar & Cigar Bonanza', room: 'bar-and-cigar', accent: '#E7A33A',
+    source: 'oddwin-nico/juegos/bar-and-cigar/docs/FICHA_TECNICA.md', math: 'bcb-0.4',
+    kicker: 'A battered old tavern that acts like the most exclusive club in town. The Fumatrón 3000 turns the reels to smoke, and the house always pours one more round.',
+    description: 'Bar & Cigar Bonanza is a 5×4 tavern-comedy slot by ODDWIN Studios: Fumatrón 3000 smoke wilds with the Humómetro up to ×25, One More Round free rounds with La Cuenta up to ×10, house tokens collected by La Caja, and La Hora Feliz Hold & Win with four jackpots. Up to 5,000× the bet.',
+    status: 'Playable · bcb-0.4',
+    facts: { grid: '5×4 · 20', rtp: '87.83–95.83%', volatility: 'High', maxWin: '5,000×' },
+    par: [
+      ['Grid', '5×4', '20 fixed lines'], ['Volatility', 'High', 'σ 11.6× per spin'], ['Max win', '5,000×', 'cap per round'],
+      ['Hit rate', '33.1%', 'any win'], ['La Hora Feliz', '1 / 197', 'spins'], ['One More Round', '1 / 175', 'spins'],
+    ],
+    rtp: ['95.83%', '93.78%', '91.85%', '87.83%'], buy: 'One More Round buy 47× (v96), off by default and blocked in the ES and UK profiles',
+    jackpots: [['CHUPITO', '20×'], ['COPA', '50×'], ['RESERVA', '200×'], ['GRAN RESERVA', '1,000×']],
+    hero: { video: 'bc_happy', label: 'La Hora Feliz · real capture' },
+    still: { video: 'bc_smoke', caption: 'Fumatrón 3000' },
+    mechanicsTitle: 'What the house serves.',
+    mechanics: [
+      { video: 'bc_smoke', name: 'Fumatrón 3000', text: 'On reels 2–4 it turns itself and every cell above it into HUMO, the wild smoke. The Humómetro (×2 to ×25) multiplies only the lines that pass through it.', len: '0:07' },
+      { video: 'bc_round', name: 'One More Round', text: 'Three, four or five bells pour 8, 10 or 12 rounds. La Cuenta — the tab — starts at ×2 and climbs +1 per bell up to ×10; three bells in one round pour ¡Otra Ronda!, four more.', len: '0:07' },
+      { video: 'bc_happy', name: 'La Hora Feliz', text: 'Happy hour: six or more house tokens stay for three respins that reset with every new token. La Caja on reel 5 collects them all; fill twenty cells for the Gran Reserva.', len: '0:07' },
+    ],
+    trailer: null, // EN cut pending (the 50 s trailer exists in Spanish only)
+    kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
+  },
+  {
+    slug: 'frutiger-eden', no: '06', name: 'Frutiger Eden', room: 'eden', accent: '#36E0FF',
+    source: 'oddwin-nico/juegos/eden/docs/FICHA_TECNICA.md', math: 'eden-1.0',
+    kicker: 'A bright digital paradise from the early 2000s, all glass and water. Cascades fill the Ecosystem until Aqua Nova opens, and floating pearls are swept up by the whirlpool or held in Pearl Lagoon.',
+    description: 'Frutiger Eden is a 5×4, 1,024-ways cascading slot by ODDWIN Studios: the Ecosystem column, Aqua Nova free spins with a bloom multiplier up to ×5, a whirlpool Collect and the Pearl Lagoon Hold & Win with four jackpots. Up to 5,000× the bet.',
+    status: 'Playable · eden-1.0',
+    facts: { grid: '5×4 · 1,024', rtp: '87.73–96.28%', volatility: 'High', maxWin: '5,000×' },
+    par: [
+      ['Grid', '5×4', '1,024 ways, cascades'], ['Volatility', 'High', 'σ ≈ 9.5× per round'], ['Max win', '5,000×', 'published cap'],
+      ['Hit rate', '36.3%', 'any win'], ['Aqua Nova', '1 / 280', 'mean 99×'], ['Pearl Lagoon', '1 / 194', 'mean 30×'],
+    ],
+    rtp: ['96.28%', '94.01%', '92.49%', '87.73%'], buy: 'Aqua Nova buy 104× (v96), switchable per market',
+    jackpots: [['MINI', '20×'], ['MINOR', '50×'], ['MAJOR', '250×'], ['GRAND', '1,000×']],
+    hero: { video: 'eden_lagoon', label: 'Pearl Lagoon · real capture' },
+    still: { video: 'eden_nova', caption: 'Aqua Nova' },
+    mechanicsTitle: 'Where the water goes.',
+    mechanics: [
+      { video: 'eden_cascade', name: 'Ecosystem', text: 'Winners dissolve into water and new symbols fall. Every winning cascade raises the Ecosystem column one level; at four, Aqua Nova begins.', len: '0:07' },
+      { video: 'eden_nova', name: 'Aqua Nova', text: 'Eight spins that keep the water between spins. Every two winning cascades the column blooms: +1 multiplier up to ×5 and +2 spins, up to twenty.', len: '0:07' },
+      { video: 'eden_lagoon', name: 'Pearl Lagoon', text: 'Six or more pearls lock for three respins that reset with every new pearl. Fill all twenty cells for the Grand.', len: '0:07' },
+    ],
+    trailer: null, // EN cut pending (the 44 s trailer exists in Spanish only)
+    kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
+  },
+  {
+    slug: 'dead-air', no: '07', name: 'Dead Air', fullName: 'Dead Air · Channel 13', room: 'dead-air', accent: '#D6281C',
+    source: 'dead-air-n1/dead-air/docs/FICHA_TECNICA.md', math: 'DA13-N1',
+    kicker: 'At 03:13 your television picks up a channel that does not exist. The whole game is that broadcast — test cards, emergency alerts, worn VHS and a host who speaks to you, calmly.',
+    description: 'Dead Air · Channel 13 is a 5×3 analogue-horror slot by ODDWIN Studios: a persistent Signal meter, the Emergency Broadcast Hold & Win and the It’s in the Building bonus, where something crawls across the monitor wall. No gore. Up to 5,000× the bet.',
+    status: 'Playable · DA13-N1',
+    facts: { grid: '5×3 · 20', rtp: '88–96%', volatility: 'Medium-high', maxWin: '5,000×' },
+    par: [
+      ['Grid', '5×3', '20 fixed lines'], ['Volatility', 'Medium-high', 'σ 5.84× per round'], ['Max win', '5,000×', 'also on buys'],
+      ['Hit rate', '42.9%', 'any win'], ['Emergency Broadcast', '1 / 102.6', 'EV 21.76×'], ['It’s in the Building', '1 / 227.5', 'EV 61.40×'],
+    ],
+    rtp: ['96.00%', '94.00%', '92.00%', '88.00%'], buy: 'two buys (Emergency Broadcast 22.5×, It’s in the Building 64×, v96), switchable per market',
+    jackpots: [['ADVISORY', '20×'], ['ALERT', '50×'], ['EMERGENCY', '150×'], ['END OF BROADCAST', '1,000×']],
+    hero: { video: 'da_emergency', label: 'Emergency Broadcast · real capture' },
+    still: { video: 'da_signal', caption: 'The Signal meter' },
+    mechanicsTitle: 'What the channel broadcasts.',
+    mechanics: [
+      { video: 'da_signal', name: 'Signal', text: 'Every test card brings something one step closer. The meter keeps its thirteen steps per bet; full, or three cards at once, and it’s in the building.', len: '0:05' },
+      { video: 'da_emergency', name: 'Emergency Broadcast', text: 'Six or more sightings lock for three respins that reset with every new one. Advisory, Alert and Emergency plates; fill all fifteen for End of Broadcast.', len: '0:07' },
+      { video: 'da_building', name: 'It’s in the Building', text: 'Eight transmissions. Something crawls along a route of adjacent monitors and they turn into EYE wilds. Above 250× the celebration runs in reverse: silence, black, one line and the figure.', len: '0:07' },
+    ],
+    trailer: null, // EN cut pending (the 30 s trailer and the 89 s walkthrough exist in Spanish only)
+    kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance', 'sources'],
+  },
 ];
 
-// Partner-studio titles: shown only as "material pending" until the owner sends footage, figures and written permission.
-export const pending = [
-  { no: '05', name: 'Bar & Cigar' },
-  { no: '06', name: 'Frutiger Eden' },
-];
+// Titles announced before their footage, figures and permission arrive: shown as "material pending". None today.
+export const pending = [];
 
 // Partner kit rows. `public` files are linked only if they exist under static/docs; otherwise they read "on request".
 export const kitItems = {

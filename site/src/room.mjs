@@ -65,6 +65,42 @@ const heroes = {
     ${player(g)}
   </div>
   <span class="sunset" aria-hidden="true"></span>`,
+
+  'bar-and-cigar': (g) => `
+  <img class="roxy" data-qa-deco src="/img/games/bc_roxy.webp" alt="">
+  <div class="wrap top">
+    <div class="mark">
+      <h1 data-qa-ignore aria-label="Bar & Cigar Bonanza"><span class="sign"><span class="bc">Bar &amp; Cigar</span><span class="bn">Bonanza</span></span></h1>
+      <p class="line">A battered old tavern that acts like the most exclusive club in town. Roxy pours, the Fumatrón 3000 smokes, and the house always stands one more round.</p>
+      <div class="brass">${g.jackpots.map(([n, v]) => `<span><small>${n}</small><b>${v}</b></span>`).join('')}</div>
+    </div>
+    ${player(g)}
+  </div>
+  <span class="counter" aria-hidden="true"></span>`,
+
+  eden: (g) => `
+  <div class="wrap top">
+    <div class="mark">
+      <h1><img class="wordmark" src="/img/games/eden_wordmark.svg" alt="Frutiger Eden" width="354" height="198"></h1>
+      <p class="line">A bright digital paradise from the early 2000s — glass, water and blue sky. Cascades fill the Ecosystem; pearls float until the whirlpool or the lagoon takes them.</p>
+      <div class="pills">${g.jackpots.map(([n, v]) => `<span class="${n.toLowerCase()}"><small>${n}</small><b>${v}</b></span>`).join('')}</div>
+    </div>
+    ${player(g)}
+  </div>
+  <span class="shore" aria-hidden="true"></span>`,
+
+  'dead-air': (g) => `
+  <div class="wrap top">
+    <div class="mark">
+      <p class="osd" aria-hidden="true"><span>▶ PLAY</span><span>03:13</span></p>
+      <h1>Dead Air<span class="ch">Channel 13</span></h1>
+      <p class="band"><b>13</b>Channel 13 · Unscheduled broadcast</p>
+      <p class="line">At 03:13 your television picks up a channel that does not exist. Test cards, emergency alerts, worn VHS and a host who speaks to you, calmly. The fear is in what you almost see — never blood.</p>
+      <div class="plates">${g.jackpots.map(([n, v], k) => `<span class="p${k}"><small>${n}</small><b>${v}</b></span>`).join('')}</div>
+    </div>
+    ${player(g)}
+  </div>
+  <span class="alert-band" aria-hidden="true"></span>`,
 };
 
 const kitRow = (g, key, staticDir) => {

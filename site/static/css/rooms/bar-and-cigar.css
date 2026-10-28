@@ -1,0 +1,28 @@
+/* the game's own room on the ODDWIN floor: BAR & CIGAR BONANZA palette and type from docs/IDENTITY.md
+   (old wood, engraved brass, cream chalk, tobacco red, amber tavern light; Alfa Slab One sign and figures, Rye headings) */
+@font-face { font-family: 'Alfa Slab One'; src: url(/fonts/alfa-slab-one.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Rye'; src: url(/fonts/rye.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'Oswald'; src: url(/fonts/oswald-var.woff2) format('woff2'); font-weight: 200 700; font-display: swap; }
+:root { --bc-wood: #2a170c; --bc-wood2: #3d2414; --bc-cream: #f1e2c0; --bc-amber: #e7a33a; --bc-tobacco: #9b2f1f; --bc-green: #2e5b3c; --bc-brass: #c79a4a; --bc-brass-hi: #f4dfa6; --bc-brass-lo: #b48a43; --bc-halo: #ff9a3a; }
+.room { position: relative; overflow: hidden; isolation: isolate; color: var(--bc-cream); }
+.room::before { content: ''; position: absolute; inset: 0; z-index: -2; background: url(/img/games/bc_bg.webp) center 45% / cover; filter: brightness(.42) saturate(.95) sepia(.15); }
+.room::after { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(40% 55% at 25% 30%, #ff9a3a33, transparent 70%), linear-gradient(180deg, #07080B 0%, #2a170c80 30%, #1b0e06c0 75%, #07080B 100%); }
+.room .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: clamp(40px, 7vh, 84px); padding-bottom: clamp(56px, 9vh, 110px); }
+.roxy { position: absolute; left: max(-40px, calc(50% - 860px)); bottom: 0; height: min(88%, 620px); width: auto; z-index: -1; opacity: .5; filter: brightness(.8) drop-shadow(0 0 40px #000); pointer-events: none; }
+.mark { container-type: inline-size; text-align: center; }
+.sign { display: inline-grid; justify-items: center; gap: 4px; padding: 18px 30px 22px; border-radius: 6px; background: linear-gradient(180deg, #4d2c16, #1b0e06); border: 3px solid var(--bc-brass); box-shadow: inset 0 0 0 2px #1b0e06, inset 0 0 0 4px #f4dfa655, 0 0 40px #ff9a3a40, 0 18px 40px #000a; }
+.sign .bc { font: 400 min(10cqi, 7vh, 46px)/1 'Alfa Slab One', serif; letter-spacing: .06em; color: var(--bc-cream); text-transform: uppercase; }
+.sign .bn { font: 400 min(16cqi, 11vh, 84px)/1 'Alfa Slab One', serif; letter-spacing: .03em; text-transform: uppercase; color: var(--bc-tobacco);
+  -webkit-text-stroke: .05em var(--bc-cream); paint-order: stroke fill; text-shadow: 0 0 18px #ff9a3a88, 0 4px 0 #1b0e06; }
+.line { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.55; margin: clamp(22px, 4vh, 34px) auto 0; max-width: 42ch; }
+.brass { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+.brass span { display: grid; gap: 3px; min-width: 104px; padding: 8px 14px 10px; border-radius: 4px; background: linear-gradient(180deg, var(--bc-brass-hi), var(--bc-brass-lo)); color: #2a170c; box-shadow: inset 0 1px 0 #fff4cf, 0 6px 14px #000a; }
+.brass small { font: 600 10px 'Oswald', sans-serif; letter-spacing: .22em; }
+.brass b { font: 400 22px/1.1 'Alfa Slab One', serif; font-variant-numeric: tabular-nums; }
+.player { position: relative; border: 3px solid var(--bc-brass); border-radius: 4px; box-shadow: 0 0 0 6px #1b0e06, 0 0 0 8px #c79a4a66, 0 0 60px #ff9a3a33, 0 30px 80px #000c; }
+.player video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.player .play-btn { position: absolute; left: 18px; bottom: 18px; font: 400 15px 'Rye', serif; letter-spacing: .06em; color: var(--bc-cream); background: linear-gradient(180deg, #ff8a62, #e04a2a 45%, #a3240f); padding: 12px 18px; border-radius: 4px; box-shadow: 0 0 24px #ff9a3a66; }
+.player .len { position: absolute; left: 0; top: calc(100% + 14px); font: 500 11px var(--mono); color: #c9b48c; letter-spacing: .06em; text-transform: uppercase; }
+.counter { display: block; height: 14px; background: linear-gradient(180deg, #4d2c16, #1b0e06); border-top: 2px solid var(--bc-brass); box-shadow: 0 -8px 24px #ff9a3a22; }
+.mech h3 { font: 400 23px/1.1 'Rye', serif; letter-spacing: .03em; color: var(--bc-amber); }
+@media (max-width: 860px) { .room .top { grid-template-columns: 1fr; } .roxy { display: none; } }

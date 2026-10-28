@@ -1,0 +1,23 @@
+/* the game's own room on the ODDWIN floor: FRUTIGER EDEN palette and type from docs/IDENTITY.md
+   (cobalt sky, cyan water, lime growth, glass; Inter, the code-drawn wordmark, glass pills for the jackpots) */
+@font-face { font-family: 'Inter'; src: url(/fonts/inter-var.woff2) format('woff2'); font-weight: 100 900; font-display: swap; }
+:root { --ed-cobalt: #1440c8; --ed-deep: #0a1f6e; --ed-navy: #071a4d; --ed-electric: #1f6bff; --ed-cyan: #36e0ff; --ed-turq: #19d3c5; --ed-lime: #a8f03a; --ed-white: #f7fdff; --ed-sky: #8db8ff; }
+.room { position: relative; overflow: hidden; isolation: isolate; color: var(--ed-white); }
+.room::before { content: ''; position: absolute; inset: 0; z-index: -2; background: url(/img/games/eden_bg.webp) center 55% / cover; filter: saturate(1.05) brightness(.9); }
+.room::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #071a4dd9 0%, #0a1f6e99 38%, #0a1f6e33 70%, transparent), linear-gradient(180deg, #07080B 0%, transparent 18%, transparent 80%, #07080B 100%); }
+.room .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: clamp(40px, 7vh, 84px); padding-bottom: clamp(56px, 9vh, 110px); }
+.mark { container-type: inline-size; text-align: center; font-family: 'Inter', var(--text); }
+.wordmark { display: block; width: min(92cqi, 440px); height: auto; margin: 0 auto; filter: drop-shadow(0 10px 30px #071a4d99); }
+.line { font: 500 clamp(17px, 1.4vw, 19px)/1.55 'Inter', var(--text); margin: clamp(18px, 3vh, 28px) auto 0; max-width: 42ch; text-shadow: 0 1px 12px #071a4d; }
+.pills { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+.pills span { display: grid; gap: 1px; min-width: 100px; padding: 8px 16px 9px; border-radius: 999px; background: linear-gradient(180deg, #ffffff55, #ffffff14 48%, #0b247099 52%, #10338fcc); border: 1px solid #ffffffaa; box-shadow: inset 0 1px 0 #fff, 0 8px 22px #071a4d88; backdrop-filter: blur(6px); }
+.pills small { font: 700 10px 'Inter', sans-serif; letter-spacing: .2em; }
+.pills b { font: 800 21px/1.1 'Inter', sans-serif; font-variant-numeric: tabular-nums; }
+.pills .mini small { color: var(--ed-lime); } .pills .minor small { color: var(--ed-turq); } .pills .major small { color: var(--ed-sky); } .pills .grand small { color: #fff; }
+.player { position: relative; border-radius: 18px; border: 2px solid #ffffffcc; box-shadow: 0 0 0 6px #ffffff33, 0 24px 70px #071a4dcc, inset 0 0 0 1px #36e0ff; }
+.player video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 16px; }
+.player .play-btn { position: absolute; left: 18px; bottom: 18px; font: 700 13px 'Inter', sans-serif; letter-spacing: .04em; color: var(--ed-navy); background: linear-gradient(180deg, #ffffff, #c9f6ff 45%, #36e0ff 55%, #8ff2ff); padding: 12px 20px; border-radius: 999px; box-shadow: inset 0 1px 0 #fff, 0 6px 20px #071a4d88; }
+.player .len { position: absolute; left: 0; top: calc(100% + 14px); font: 500 11px var(--mono); color: #cfe6ff; letter-spacing: .06em; text-transform: uppercase; }
+.shore { display: block; height: 4px; background: linear-gradient(90deg, transparent, var(--ed-cyan) 20%, var(--ed-lime) 50%, var(--ed-turq) 80%, transparent); box-shadow: 0 0 22px 2px #36e0ff66; }
+.mech h3 { font: 800 22px/1.15 'Inter', sans-serif; letter-spacing: -.01em; color: var(--ed-cyan); }
+@media (max-width: 860px) { .room .top { grid-template-columns: 1fr; } .room::after { background: linear-gradient(180deg, #07080B 0%, #071a4dcc 25%, #0a1f6e99 70%, #07080B 100%); } }

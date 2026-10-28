@@ -1,6 +1,7 @@
 Fonts served by oddwinstudios.com. All are licensed under the SIL Open Font License, Version 1.1
-(full text in OFL-Cinzel.txt and OFL-Oswald.txt; the licence text is identical for every family below).
-Files are subsets of the originals published on Google Fonts (fonts.google.com).
+(full text in the OFL-*.txt files next to this one; the licence text is identical for every family below).
+Files are subsets of the originals published on Google Fonts (fonts.google.com), except the families with a
+Reserved Font Name (Rye, Alfa Slab, Plex), which are served complete, only converted to WOFF2.
 
 archivo-var.woff2          Archivo (variable: weight, width)
 plexmono-400/500.woff2     IBM Plex Mono
@@ -10,3 +11,8 @@ manrope-var.woff2          Manrope                 (Obsidian room)
 oswald-var.woff2           Oswald                  (Aura room)
 bowlby-one-sc.woff2        Bowlby One SC           (Vice Miami Spin room)
 barlow-condensed-800.woff2 Barlow Condensed        (Vice Miami Spin room)
+plexmono-700.woff2         IBM Plex Mono Bold      (Dead Air room)
+alfa-slab-one.woff2        Alfa Slab One           (Bar & Cigar room)
+rye.woff2                  Rye                     (Bar & Cigar room)
+inter-var.woff2            Inter (variable)        (Frutiger Eden room)
+vt323.woff2                VT323                   (Dead Air room)

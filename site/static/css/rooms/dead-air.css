@@ -1,0 +1,30 @@
+/* the game's own room on the ODDWIN floor: DEAD AIR — CHANNEL 13 palette and type from docs/IDENTITY.md
+   (signal black, studio blue, alert red, advisory amber; Oswald broadcast captions, IBM Plex Mono alerts, VT323 video OSD).
+   Calm and still: no flashing, no scare — the room only shows the broadcast. */
+@font-face { font-family: 'Oswald'; src: url(/fonts/oswald-var.woff2) format('woff2'); font-weight: 200 700; font-display: swap; }
+@font-face { font-family: 'VT323'; src: url(/fonts/vt323.woff2) format('woff2'); font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url(/fonts/plexmono-700.woff2) format('woff2'); font-weight: 700; font-display: swap; }
+:root { --da-black: #0A0B0D; --da-studio: #12162A; --da-red: #D6281C; --da-amber: #EEB234; --da-orange: #EB7828; --da-bone: #E8E4D6; --da-ash: #8C8A80; }
+.room { position: relative; overflow: hidden; isolation: isolate; color: var(--da-bone); background: var(--da-black); }
+.room::before { content: ''; position: absolute; inset: 0; z-index: -2; background: url(/img/games/da_station.webp) center 60% / cover; filter: brightness(.38) saturate(.7) contrast(1.05); }
+.room::after { content: ''; position: absolute; inset: 0; z-index: -1; background: repeating-linear-gradient(180deg, #0000 0 2px, #00000038 2px 4px), radial-gradient(70% 80% at 50% 45%, transparent 40%, #0A0B0Dee 100%), linear-gradient(180deg, #07080B 0%, #0A0B0D66 25%, #0A0B0D99 75%, #07080B 100%); }
+.room .top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding-top: clamp(40px, 7vh, 84px); padding-bottom: clamp(56px, 9vh, 110px); }
+.mark { container-type: inline-size; }
+.osd { display: flex; justify-content: space-between; font: 400 clamp(20px, 2vw, 26px)/1 'VT323', monospace; color: var(--da-bone); opacity: .85; max-width: 420px; }
+.mark h1 { margin-top: 26px; font: 600 min(20cqi, 14vh, 112px)/1.02 'Oswald', sans-serif; letter-spacing: .02em; text-transform: uppercase; color: var(--da-bone); text-shadow: 2px 0 0 #d6281c55, -2px 0 0 #36e0ff33; }
+.mark h1 .ch { display: block; margin-top: 10px; font-size: .3em; font-weight: 500; letter-spacing: .42em; color: var(--da-ash); text-shadow: none; }
+.band { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 6px 12px 6px 6px; background: var(--da-studio); border-left: 3px solid var(--da-red); font: 500 12px 'Oswald', sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.band b { display: inline-grid; place-items: center; width: 26px; height: 22px; background: var(--da-red); color: #fff; font-weight: 700; letter-spacing: 0; }
+.line { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.6; margin-top: clamp(20px, 3.5vh, 30px); max-width: 44ch; color: var(--da-bone); }
+.plates { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 26px; }
+.plates span { display: grid; gap: 2px; min-width: 96px; padding: 7px 12px 9px; background: #0A0B0Dcc; border: 1px solid #E8E4D633; font-family: 'IBM Plex Mono', monospace; }
+.plates small { font: 700 10px 'IBM Plex Mono', monospace; letter-spacing: .12em; }
+.plates b { font: 600 22px/1.1 'Oswald', sans-serif; font-variant-numeric: tabular-nums; }
+.plates .p0 small { color: var(--da-amber); } .plates .p1 small { color: var(--da-orange); } .plates .p2 small { color: var(--da-red); } .plates .p3 small { color: var(--da-bone); } .plates .p3 { border-color: #D6281C99; }
+.player { position: relative; border: 1px solid #E8E4D640; border-radius: 10px; box-shadow: 0 0 0 10px #12162A, 0 0 0 11px #E8E4D622, 0 30px 80px #000d; }
+.player video { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 9px; }
+.player .play-btn { position: absolute; left: 18px; bottom: 18px; font: 600 13px 'Oswald', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #fff; background: var(--da-red); padding: 12px 18px; }
+.player .len { position: absolute; left: 0; top: calc(100% + 14px); font: 400 18px/1 'VT323', monospace; color: var(--da-ash); letter-spacing: .04em; text-transform: uppercase; }
+.alert-band { display: block; height: 4px; background: var(--da-red); box-shadow: 0 0 18px #D6281C66; }
+.mech h3 { font: 600 22px/1.1 'Oswald', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--da-bone); }
+@media (max-width: 860px) { .room .top { grid-template-columns: 1fr; } }
