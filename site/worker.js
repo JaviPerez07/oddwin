@@ -17,6 +17,24 @@ export default {
         return new Response(JSON.stringify({ ok: false, error: 'Something went wrong on our side. Please write to partnership@oddwinstudios.com.' }), { status: 500, headers: { 'content-type': 'application/json' } });
       }
     }
-    return env.ASSETS.fetch(request);
+    const res = await env.ASSETS.fetch(request);
+    return /\.(mp4|webm)$/.test(url.pathname) ? ranged(request, res) : res;
   },
 };
+
+// Static assets come back whole (200) even when the browser asks for a byte range, and without 206 the video player
+// cannot seek. Videos are small enough (≤ 12 MB) to slice here.
+async function ranged(request, res) {
+  const range = request.headers.get('range');
+  if (res.status !== 200) return res;
+  const headers = new Headers(res.headers);
+  headers.set('accept-ranges', 'bytes');
+  const m = range && /^bytes=(\d*)-(\d*)$/.exec(range.trim());
+  if (!m || (!m[1] && !m[2])) return new Response(res.body, { status: 200, headers });
+  const body = await res.arrayBuffer(), size = body.byteLength;
+  let start = m[1] ? +m[1] : Math.max(0, size - +m[2]), end = m[1] && m[2] ? Math.min(+m[2], size - 1) : size - 1;
+  if (start >= size || start > end) { headers.set('content-range', `bytes */${size}`); headers.delete('content-length'); return new Response(null, { status: 416, headers }); }
+  headers.set('content-range', `bytes ${start}-${end}/${size}`);
+  headers.set('content-length', String(end - start + 1));
+  return new Response(request.method === 'HEAD' ? null : body.slice(start, end + 1), { status: 206, headers });
+}

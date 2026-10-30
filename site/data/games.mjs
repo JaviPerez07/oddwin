@@ -50,7 +50,7 @@ export const games = [
     ],
     concept: 'A volcanic-vault Hold & Win with a collector, locking stones and free spins with a molten multiplier up to ×10.',
     featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
-    trailer: { src: 'obsidian_55s_en.mp4', poster: 'obsidian_55s_en.jpg', len: '0:55' }, // EN cut: obsidian-vault/trailer/edit_en.sh
+    trailer: { src: 'obsidian_57s_en.mp4', poster: 'obsidian_57s_en.jpg', len: '0:57' }, // EN cut: obsidian-vault/trailer/edit_en.sh
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
   {
@@ -76,7 +76,7 @@ export const games = [
     ],
     concept: 'A monumental Hold & Win where an Aura meter climbs to ×10 — built without bonus buy, autoplay or turbo.',
     featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true, lab: true } }, demo: true, // demo: true only once its private evaluation build is verified
-    trailer: { src: 'aura_30s_en.mp4', poster: 'aura_hands.jpg', len: '0:30' },
+    trailer: { src: 'aura_33s_en.mp4', poster: 'aura_33s_en.jpg', len: '0:33' },
     walkthrough: { src: 'aura_features_en.mp4', len: '0:57' },
     kit: ['trailer', 'factsheet', 'build', 'par3', 'integration', 'compliance', 'lab', 'lobby'],
   },
@@ -103,7 +103,7 @@ export const games = [
     ],
     concept: 'A neon Miami heist: cash bags, a Collect bag and a six-bag Hold & Win with four jackpots.',
     featured: false, docs: { math: true, integration: true, rgs: true, ...{ compliance: true } }, demo: true, // demo: true only once its private evaluation build is verified
-    trailer: { src: 'vice-miami-spin_54s_en.mp4', poster: 'vice-miami-spin_54s_en.jpg', len: '0:54' }, // EN cut: vice-miami-spin/trailer/make_en.py
+    trailer: { src: 'vice-miami-spin_56s_en.mp4', poster: 'vice-miami-spin_56s_en.jpg', len: '0:56' }, // EN cut: vice-miami-spin/trailer/make_en.py
     kit: ['trailer', 'factsheet', 'build', 'par4', 'integration', 'compliance'],
   },
   {
